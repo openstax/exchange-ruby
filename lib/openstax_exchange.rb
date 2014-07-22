@@ -2,6 +2,7 @@ require 'openstax/exchange/version'
 
 require 'oauth2'
 require 'uri'
+require 'json'
 
 module OpenStax
   module Exchange
@@ -97,6 +98,17 @@ module OpenStax
                    :api_version => version}
         api_call(:get, 'events', options)
       end
+
+      #
+      def create_identifier(version = DEFAULT_API_VERSION)
+        options = {:api_version => version}
+        my_hash = JSON.parse(api_call(:post, 'identifiers', options).body)
+        my_hash["identifier"]
+      end
+
+
+
+      #
 
       protected
 

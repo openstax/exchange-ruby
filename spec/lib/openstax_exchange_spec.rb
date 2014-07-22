@@ -19,5 +19,13 @@ module OpenStax
       expect(Api::EventsController.last_params).to include :q => 'sth'
     end
 
+    it 'creates an identifier' do
+      Api::IdentifiersController.last_action = nil
+      Api::IdentifiersController.last_params = nil
+      res = Exchange.create_identifier()
+      expect(Api::IdentifiersController.last_action).to eq :create
+      expect(res).to be_instance_of String
+    end
+
   end
 end
