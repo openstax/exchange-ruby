@@ -1,7 +1,7 @@
 exchange-ruby
 =============
 
-A rails engine for interfacing with OpenStax Exchange.
+A ruby client for interfacing with the OpenStax Exchange API.
 
 Usage
 -----
