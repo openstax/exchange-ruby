@@ -86,8 +86,8 @@ module OpenStax
         token.request(http_method, api_url, options)
       end
 
-      # Performs an event search in the Exchange server.
-      # Results are limited to events created by this app.
+      # Performs an Event search in the Exchange server.
+      # Results are limited to Events created by this platform.
       # Takes a query parameter and an optional API version parameter.
       # API version currently defaults to :v1 (may change in the future).
       # On failure, throws an Exception, just like api_call.
