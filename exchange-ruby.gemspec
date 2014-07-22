@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["JP Slavinsky", "Dante Soares"]
   s.email       = ["jps@kindlinglabs.com", "dms3@rice.edu"]
   s.homepage    = "http://github.com/openstax/exchange-ruby"
-  s.summary     = "Rails common code and bindings and for the 'Exchange' API"
-  s.description = "Rails common code and bindings and for the 'Exchange' API"
+  s.summary     = "Ruby common code and bindings and for the 'Exchange' API"
+  s.description = "Ruby common code and bindings and for the 'Exchange' API"
 
   s.files = Dir["lib/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]

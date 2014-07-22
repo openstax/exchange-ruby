@@ -31,5 +31,5 @@ Dummy::Application.configure do
 
   # Necessary because our folder structure does not match what Rails expects,
   # so the usual autoload doesn't work
-  config.eager_load = true
+  config.eager_load = false
 end
