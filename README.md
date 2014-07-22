@@ -1,7 +1,7 @@
 exchange-ruby
 =============
 
-[![Gem Version](https://badge.fury.io/rb/exchange_ruby.svg)](http://badge.fury.io/rb/exchange_ruby)
+[![Gem Version](https://badge.fury.io/rb/openstax_exchange.svg)](http://badge.fury.io/rb/openstax_exchange)
 [![Build Status](https://travis-ci.org/openstax/exchange-ruby.svg?branch=master)](https://travis-ci.org/openstax/exchange-ruby)
 [![Code Climate](https://codeclimate.com/github/openstax/exchange-ruby.png)](https://codeclimate.com/github/openstax/exchange-ruby)
 
