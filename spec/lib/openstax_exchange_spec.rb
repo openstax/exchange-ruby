@@ -24,7 +24,7 @@ module OpenStax
       Api::IdentifiersController.last_params = nil
       res = Exchange.create_identifier()
       expect(Api::IdentifiersController.last_action).to eq :create
-      expect(res).to be_instance_of String
+      expect(res["identifier"]).to be_instance_of String
     end
 
   end

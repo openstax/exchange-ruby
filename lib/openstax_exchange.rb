@@ -99,19 +99,14 @@ module OpenStax
         api_call(:get, 'events', options)
       end
 
-      #
+      # Creates a new Identifier to represent an anonymous user.
+      # On success, returns a hash containing the identifier.
       def create_identifier(version = DEFAULT_API_VERSION)
         options = {:api_version => version}
-        my_hash = JSON.parse(api_call(:post, 'identifiers', options).body)
-        my_hash["identifier"]
+        JSON.parse(api_call(:post, 'identifiers', options).body)
       end
 
-
-
-      #
-
       protected
-
       def client
         @client ||= OAuth2::Client.new(configuration.openstax_exchange_platform_id,
                       configuration.openstax_exchange_platform_secret,

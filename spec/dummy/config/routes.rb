@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources 'events', only: [:index]
     resources 'identifiers', only: [:create]
   end
+
+
 end
