@@ -2,12 +2,23 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 require 'rspec/rails'
+require 'capybara'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 Rails.backtrace_cleaner.remove_silencers!
 
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+
+# Initializes a Capybara server running the Dummy app
+CAPYBARA_SERVER = Capybara::Server.new(Rails.application).boot
+
+OpenStax::Exchange.configure do |config|
+  config.openstax_exchange_url = "http://localhost:#{CAPYBARA_SERVER.port}"
+  # 3003/
+  config.openstax_exchange_platform_id = 'u'
+  config.openstax_exchange_platform_secret = 's'
+end
 
 RSpec.configure do |config|
   # ## Mock Framework

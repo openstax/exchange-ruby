@@ -2,6 +2,7 @@ require 'openstax/exchange/version'
 
 require 'oauth2'
 require 'uri'
+require 'json'
 
 module OpenStax
   module Exchange
@@ -98,8 +99,14 @@ module OpenStax
         api_call(:get, 'events', options)
       end
 
-      protected
+      # Creates a new Identifier to represent an anonymous user.
+      # On success, returns a hash containing the identifier.
+      def create_identifier(version = DEFAULT_API_VERSION)
+        options = {:api_version => version}
+        JSON.parse(api_call(:post, 'identifiers', options).body)
+      end
 
+      protected
       def client
         @client ||= OAuth2::Client.new(configuration.openstax_exchange_platform_id,
                       configuration.openstax_exchange_platform_secret,

@@ -7,5 +7,8 @@ Rails.application.routes.draw do
     post 'dummy', :to => 'dummy#dummy'
 
     resources 'events', only: [:index]
+    resources 'identifiers', only: [:create]
   end
+
+
 end
