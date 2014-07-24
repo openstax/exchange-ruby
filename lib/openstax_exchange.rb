@@ -145,6 +145,19 @@ module OpenStax
           JSON.parse(res.body)
       end
 
+      # Creates an Event that records a user's work being graded.
+      # Takes an Identifier to represent the anonymous user that did the work.
+      # Takes optional attributes parameter and API version parameter.
+      # On success, returns
+      def create_grading(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+        options = {:api_version => version,
+          :body => attributes.to_json,
+          :params => {:identifier => identifier}}
+          res = api_call(:post, 'events/platforms/gradings', options)
+          JSON.parse(res.body)
+      end
+
+
       protected
       def client
         @client ||= OAuth2::Client.new(configuration.openstax_exchange_platform_id,

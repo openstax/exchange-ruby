@@ -54,7 +54,14 @@ module OpenStax
       expect(Api::TaskEventsController.last_params).to include :identifier => id
     end
 
-
+    it 'creates a grading event' do
+      Api::GradingEventsController.last_action = nil
+      Api::GradingEventsController.last_params = nil
+      id = Exchange.create_identifier["identifier"]
+      res = Exchange.create_grading(id)
+      expect(Api::GradingEventsController.last_action).to eq :gradings
+      expect(Api::GradingEventsController.last_params).to include :identifier => id
+    end
 
   end
 end
