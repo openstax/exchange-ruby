@@ -63,5 +63,15 @@ module OpenStax
       expect(Api::GradingEventsController.last_params).to include :identifier => id
     end
 
+    it 'creates a message event' do
+      Api::MessageEventsController.last_action = nil
+      Api::MessageEventsController.last_params = nil
+      id = Exchange.create_identifier["identifier"]
+      res = Exchange.create_message(id)
+      expect(Api::MessageEventsController.last_action).to eq :messages
+      expect(Api::MessageEventsController.last_params).to include :identifier => id
+    end
+
+
   end
 end
