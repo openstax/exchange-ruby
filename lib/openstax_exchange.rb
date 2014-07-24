@@ -100,10 +100,37 @@ module OpenStax
       end
 
       # Creates a new Identifier to represent an anonymous user.
+      # Takes an optional API version parameter.
       # On success, returns a hash containing the identifier.
       def create_identifier(version = DEFAULT_API_VERSION)
         options = {:api_version => version}
         JSON.parse(api_call(:post, 'identifiers', options).body)
+      end
+
+      # Creates an Event that records the user submitting a multiple choice
+      # answer.
+      # Takes an Identifier to represent an anonymous user.
+      # Takes optional attributes parameter and API version parameter.
+      # On success, returns a hash containing multiple choice event information.
+      def create_multiple_choice(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+        options = {:api_version => version,
+          :body => attributes.to_json,
+          :params => {:identifier => identifier}}
+        res = api_call(:post, 'events/platforms/multiple_choices', options)
+        JSON.parse(res.body)
+      end
+
+      # Creates an Event that records the user submitting a free response
+      # answer.
+      # Takes an Identifier to represent an anonymous user.
+      # Takes optional attributes parameter and API version parameter.
+      # On success, returns a hash containing free response event information.
+      def create_free_response(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+        options = {:api_version => version,
+          :body => attributes.to_json,
+          :params => {:identifier => identifier}}
+        res = api_call(:post, 'events/platforms/free_responses', options)
+        JSON.parse(res.body)
       end
 
       protected

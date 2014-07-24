@@ -27,5 +27,24 @@ module OpenStax
       expect(res["identifier"]).to be_instance_of String
     end
 
+    it 'records a multiple choice answer' do
+      Api::InputEventsController.last_action = nil
+      Api::InputEventsController.last_params = nil
+      id = Exchange.create_identifier["identifier"]
+      res = Exchange.create_multiple_choice(id)
+      expect(Api::InputEventsController.last_action).to eq :multiple_choices
+      expect(Api::InputEventsController.last_params).to include :identifier => id
+    end
+
+    it 'records a free response answer' do
+      Api::InputEventsController.last_action = nil
+      Api::InputEventsController.last_params = nil
+      id = Exchange.create_identifier["identifier"]
+      res = Exchange.create_free_response(id)
+      expect(Api::InputEventsController.last_action).to eq :free_responses
+      expect(Api::InputEventsController.last_params).to include :identifier => id
+    end
+
+
   end
 end
