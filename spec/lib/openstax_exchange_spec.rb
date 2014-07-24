@@ -45,6 +45,16 @@ module OpenStax
       expect(Api::InputEventsController.last_params).to include :identifier => id
     end
 
+    it 'creates a task event' do
+      Api::TaskEventsController.last_action = nil
+      Api::TaskEventsController.last_params = nil
+      id = Exchange.create_identifier["identifier"]
+      res = Exchange.create_task(id)
+      expect(Api::TaskEventsController.last_action).to eq :tasks
+      expect(Api::TaskEventsController.last_params).to include :identifier => id
+    end
+
+
 
   end
 end
