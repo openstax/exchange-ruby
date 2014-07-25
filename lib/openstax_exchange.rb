@@ -89,20 +89,22 @@ module OpenStax
 
       # Performs an Event search in the Exchange server.
       # Results are limited to Events created by this platform.
-      # Takes a query parameter and an optional API version parameter.
+      # Takes a query parameter and a hash of an optional API version parameter.
       # API version currently defaults to :v1 (may change in the future).
       # On failure, throws an Exception, just like api_call.
       # On success, returns an OAuth2::Response object.
-      def search_events(query, version = DEFAULT_API_VERSION)
-        options = {:params => {:q => query},
-                   :api_version => version}
+      def search_events(query, opt = {:api_version => DEFAULT_API_VERSION})
+        version = opt.delete(:api_version)
+        options = {:api_version => version,
+                   :params => {:q => query}}
         api_call(:get, 'events', options)
       end
 
       # Creates a new Identifier to represent an anonymous user.
-      # Takes an optional API version parameter.
+      # Takes a hash of an optional API version parameter.
       # On success, returns a hash containing the identifier.
-      def create_identifier(version = DEFAULT_API_VERSION)
+      def create_identifier(opt = {:api_version => DEFAULT_API_VERSION})
+        version = opt.delete(:api_version)
         options = {:api_version => version}
         JSON.parse(api_call(:post, 'identifiers', options).body)
       end
@@ -110,12 +112,14 @@ module OpenStax
       # Creates an Event that records the user submitting a multiple choice
       # answer.
       # Takes an Identifier to represent an anonymous user.
-      # Takes optional attributes parameter and API version parameter.
+      # Takes a hash of an optional API version parameter.
       # On success, returns a hash containing multiple choice event information.
-      def create_multiple_choice(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+      #def create_multiple_choice(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+      def create_multiple_choice(identifier, opt = {:api_version => DEFAULT_API_VERSION})
+        version = opt.delete(:api_version)
         options = {:api_version => version,
-          :body => attributes.to_json,
-          :params => {:identifier => identifier}}
+                   :body => opt.to_json,
+                   :params => {:identifier => identifier}}
         res = api_call(:post, 'events/platforms/multiple_choices', options)
         JSON.parse(res.body)
       end
@@ -123,48 +127,52 @@ module OpenStax
       # Creates an Event that records the user submitting a free response
       # answer.
       # Takes an Identifier to represent an anonymous user.
-      # Takes optional attributes parameter and API version parameter.
+      # Takes a hash of an optional API version parameter.
       # On success, returns a hash containing free response event information.
-      def create_free_response(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+      def create_free_response(identifier, opt = {:api_version => DEFAULT_API_VERSION})
+        version = opt.delete(:api_version)
         options = {:api_version => version,
-          :body => attributes.to_json,
-          :params => {:identifier => identifier}}
+                   :body => opt.to_json,
+                   :params => {:identifier => identifier}}
         res = api_call(:post, 'events/platforms/free_responses', options)
         JSON.parse(res.body)
       end
 
       # Creates an Event that records or updates a task assignment.
       # Takes an Identifier to represent an anonymous user.
-      # Takes optional attributes parameter and API version parameter.
+      # Takes a hash of an optional API version parameter.
       # On success, returns a hash containing task event information.
-      def create_task(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+      def create_task(identifier, opt = {:api_version => DEFAULT_API_VERSION})
+        version = opt.delete(:api_version)
         options = {:api_version => version,
-          :body => attributes.to_json,
-          :params => {:identifier => identifier}}
+                   :body => opt.to_json,
+                   :params => {:identifier => identifier}}
         res = api_call(:post, 'events/platforms/tasks', options)
         JSON.parse(res.body)
       end
 
       # Creates an Event that records a user's work being graded.
       # Takes an Identifier to represent the anonymous user that did the work.
-      # Takes optional attributes parameter and API version parameter.
+      # Takes a hash of an optional API version parameter.
       # On success, returns a hash containing grading event information.
-      def create_grading(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+      def create_grading(identifier, opt = {:api_version => DEFAULT_API_VERSION})
+        version = opt.delete(:api_version)
         options = {:api_version => version,
-          :body => attributes.to_json,
-          :params => {:identifier => identifier}}
+                   :body => opt.to_json,
+                   :params => {:identifier => identifier}}
         res = api_call(:post, 'events/platforms/gradings', options)
         JSON.parse(res.body)
       end
 
       # Creates an Event that records the user sending a message to other users.
       # Takes an Identifier to represent an anonymous user.
-      # Takes optional attributes parameter and API version parameter.
+      # Takes a hash of an optional API version parameter.
       # On success, returns a hash containing message event information.
-      def create_message(identifier, attributes = {}, version = DEFAULT_API_VERSION)
+      def create_message(identifier, opt = {:api_version => DEFAULT_API_VERSION})
+        version = opt.delete(:api_version)
         options = {:api_version => version,
-          :body => attributes.to_json,
-          :params => {:identifier => identifier}}
+                   :body => opt.to_json,
+                   :params => {:identifier => identifier}}
         res = api_call(:post, 'events/platforms/messages', options)
         JSON.parse(res.body)
       end
@@ -177,6 +185,5 @@ module OpenStax
       end
 
     end
-
   end
 end

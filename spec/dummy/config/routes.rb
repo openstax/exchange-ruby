@@ -18,7 +18,5 @@ Rails.application.routes.draw do
 				event_routes :tasks
 			end
 		end
-  end
-
-  
+  end 
 end
