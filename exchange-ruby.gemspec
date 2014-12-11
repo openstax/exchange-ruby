@@ -18,9 +18,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "oauth2", ">= 0.5.0"
 
-  s.add_development_dependency "rails", ">= 3.1"
+  s.add_development_dependency "rails", ">= 4.1"
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "rspec-rails", ">= 3.0"
   s.add_development_dependency "capybara"
   s.add_development_dependency "quiet_assets"
   s.add_development_dependency "thin"
