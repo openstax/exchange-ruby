@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'exchange/client/version'
+require 'openstax/exchange/client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "exchange-client"
-  spec.version       = Exchange::Client::VERSION
+  spec.name          = "openstax-exchange-client"
+  spec.version       = OpenStax::Exchange::Client::VERSION
   spec.authors       = ["Kevin Burleigh"]
   spec.email         = ["klb@kindlinglabs"]
   spec.summary       = %q{Ruby client for OpenStax Exchange}

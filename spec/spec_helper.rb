@@ -1,1 +1,1 @@
-require 'exchange/client'
+require 'openstax/exchange/client'
