@@ -7,40 +7,7 @@ module OpenStax
       end
 
       def self.configuration
-        @configuration ||= Configuration.new
-      end
-
-      class Configuration
-
-        def initialize
-          use_real_client
-        end
-
-        def use_real_client
-          @use_real_client = true
-        end
-
-        def use_fake_client
-          @use_real_client = false
-        end
-
-        def use_real_client?
-          !!@use_real_client
-        end
-
-        def use_fake_client?
-          !use_real_client?
-        end
-      end
-
-      class Client
-        def is_real?
-          raise NotImplementedError
-        end
-
-        def token
-          raise NotImplementedError
-        end
+        @configuration ||= ClientConfiguration.new
       end
 
       def self.clear_client
@@ -75,9 +42,9 @@ module OpenStax
 
       def self.create_client
         if configuration.use_real_client?
-          RealClient.new
+          RealClient.new configuration
         elsif configuration.use_fake_client?
-          FakeClient.new
+          FakeClient.new configuration
         else
           raise "internal error - don't know how to create client instance"
         end

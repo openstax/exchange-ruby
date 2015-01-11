@@ -3,27 +3,13 @@ require 'oauth2'
 module OpenStax
   module Exchange
     module Client
-      class RealClient < Client
-        def self.configure
-          yield configuration
-        end
+      class RealClient < ClientInstanceBase
 
-        def self.configuration
-          @configuration ||= Configuration.new
-        end
-
-        class Configuration
-          attr_accessor :platform_id
-          attr_accessor :platform_secret
-          attr_accessor :server_base_url
-          attr_accessor :api_version
-        end
-
-        def initialize
-          @platform_id     = self.class.configuration.platform_id
-          @platform_secret = self.class.configuration.platform_secret
-          @server_base_url = self.class.configuration.server_base_url
-          @api_version     = self.class.configuration.api_version
+        def initialize(client_configuration)
+          @platform_id     = client_configuration.platform_id
+          @platform_secret = client_configuration.platform_secret
+          @server_base_url = client_configuration.server_base_url
+          @api_version     = client_configuration.api_version
 
           @oauth_client = OAuth2::Client.new(
             @platform_id,

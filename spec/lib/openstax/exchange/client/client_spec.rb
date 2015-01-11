@@ -3,7 +3,7 @@ require 'spec_helper'
 describe OpenStax::Exchange::Client do
 
   before(:each) do
-    OpenStax::Exchange::Client::RealClient.configure do |config|
+    OpenStax::Exchange::Client.configure do |config|
       config.platform_id     = '123'
       config.platform_secret = 'abc'
       config.server_base_url = 'http://localhost:3003'
@@ -11,8 +11,6 @@ describe OpenStax::Exchange::Client do
     end
 
     OpenStax::Exchange::Client::FakeClient.configure do |config|
-      config.platform_id     = '123'
-      config.platform_secret = 'abc'
       config.registered_platforms = {'123' => 'abc'}
     end
   end
@@ -70,7 +68,7 @@ describe OpenStax::Exchange::Client do
     context "API V1" do
 
       before(:each) do
-        OpenStax::Exchange::Client::RealClient.configure do |config|
+        OpenStax::Exchange::Client.configure do |config|
           config.api_version = 'v1'
         end
       end
@@ -84,7 +82,7 @@ describe OpenStax::Exchange::Client do
         end
         context "invalid server" do
           it "raises an exception" do
-            OpenStax::Exchange::Client::RealClient.configure do |config|
+            OpenStax::Exchange::Client.configure do |config|
               config.server_base_url = 'http://this.is.a.fake.address'
             end
             expect {
@@ -94,7 +92,7 @@ describe OpenStax::Exchange::Client do
         end
         context "invalid port" do
           it "raises an exception" do
-            OpenStax::Exchange::Client::RealClient.configure do |config|
+            OpenStax::Exchange::Client.configure do |config|
               config.server_base_url = 'http://localhost:9999'
             end
             expect {
@@ -104,7 +102,7 @@ describe OpenStax::Exchange::Client do
         end
         context "invalid platform id" do
           it "raises an exception" do
-            OpenStax::Exchange::Client::RealClient.configure do |config|
+            OpenStax::Exchange::Client.configure do |config|
               config.platform_id = '999'
             end
             expect {
@@ -114,7 +112,7 @@ describe OpenStax::Exchange::Client do
         end
         context "invalid platform secret" do
           it "raises an exception" do
-            OpenStax::Exchange::Client::RealClient.configure do |config|
+            OpenStax::Exchange::Client.configure do |config|
               config.platform_secret = 'not_the_secret'
             end
             expect {
@@ -256,7 +254,7 @@ describe OpenStax::Exchange::Client do
       end
       context "invalid platform id" do
         it "raises an exception" do
-          OpenStax::Exchange::Client::FakeClient.configure do |config|
+          OpenStax::Exchange::Client.configure do |config|
             config.platform_id = '999'
           end
           expect {
@@ -266,7 +264,7 @@ describe OpenStax::Exchange::Client do
       end
       context "invalid platform secret" do
         it "raises an exception" do
-          OpenStax::Exchange::Client::FakeClient.configure do |config|
+          OpenStax::Exchange::Client.configure do |config|
             config.platform_secret = 'not_the_secret'
           end
           expect {

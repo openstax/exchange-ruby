@@ -3,28 +3,25 @@ require 'securerandom'
 module OpenStax
   module Exchange
     module Client
-      class FakeClient < Client
+      class FakeClient < ClientInstanceBase
         def self.configure
           yield configuration
         end
 
         def self.configuration
-          @configuration ||= Configuration.new
+          @configuration ||= FakeClientConfiguration.new
         end
 
-        class Configuration
-          attr_accessor :platform_id
-          attr_accessor :platform_secret
-          attr_accessor :registered_platforms
-        end
+        def initialize(client_configuration)
+          @client_config_platform_id          = client_configuration.platform_id
+          @client_config_platform_secret      = client_configuration.platform_secret
+          @client_config_server_url           = client_configuration.server_base_url
+          @client_config_api_version          = client_configuration.api_version
 
-        def initialize
-          @platform_id          = self.class.configuration.platform_id
-          @platform_secret      = self.class.configuration.platform_secret
           @registered_platforms = self.class.configuration.registered_platforms
 
           raise "invalid platform credentials" \
-            unless @registered_platforms.fetch(@platform_id) == @platform_secret
+            unless @registered_platforms.fetch(@client_config_platform_id) == @client_config_platform_secret
 
           @token = SecureRandom.hex(64)
         end
