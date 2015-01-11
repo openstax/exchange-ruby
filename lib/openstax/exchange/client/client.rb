@@ -13,7 +13,7 @@ module OpenStax
       class Configuration
 
         def initialize
-          @use_real_client = true
+          use_real_client
         end
 
         def use_real_client
@@ -25,7 +25,7 @@ module OpenStax
         end
 
         def use_real_client?
-          @use_real_client
+          !!@use_real_client
         end
 
         def use_fake_client?
