@@ -77,7 +77,7 @@ describe OpenStax::Exchange::Client do
           end
         end
         context "invalid server" do
-          it "raises and exception" do
+          it "raises an exception" do
             OpenStax::Exchange::Client::RealClient.configure do |config|
               config.server_base_url = 'http://this.is.a.fake.address'
             end
@@ -87,7 +87,7 @@ describe OpenStax::Exchange::Client do
           end
         end
         context "invalid port" do
-          it "raises and exception" do
+          it "raises an exception" do
             OpenStax::Exchange::Client::RealClient.configure do |config|
               config.server_base_url = 'http://localhost:9999'
             end
@@ -97,7 +97,7 @@ describe OpenStax::Exchange::Client do
           end
         end
         context "invalid platform id" do
-          it "raises and exception" do
+          it "raises an exception" do
             OpenStax::Exchange::Client::RealClient.configure do |config|
               config.platform_id = '999'
             end
@@ -107,7 +107,7 @@ describe OpenStax::Exchange::Client do
           end
         end
         context "invalid platform secret" do
-          it "raises and exception" do
+          it "raises an exception" do
             OpenStax::Exchange::Client::RealClient.configure do |config|
               config.platform_secret = 'not_the_secret'
             end
