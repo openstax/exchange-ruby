@@ -5,7 +5,7 @@ describe OpenStax::Exchange::Client do
   context "real client api v1" do
 
     before(:each) do
-      OpenStax::Exchange::Client.clear_client
+      OpenStax::Exchange::Client.reset!
       OpenStax::Exchange::Client.use_real_client
       OpenStax::Exchange::Client.configure do |config|
         config.platform_id     = DEFAULT_CLIENT_PLATFORM_ID

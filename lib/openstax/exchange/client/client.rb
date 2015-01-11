@@ -12,7 +12,7 @@ module OpenStax
         @configuration ||= ClientConfiguration.new
       end
 
-      def self.clear_client
+      def self.reset!
         @client = nil
       end
 

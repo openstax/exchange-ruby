@@ -30,7 +30,7 @@ describe OpenStax::Exchange::Client do
 
     it "#clear_client causes a new client object to be returned by #client" do
       client_object_id1 = OpenStax::Exchange::Client.send(:client).object_id
-      OpenStax::Exchange::Client.clear_client
+      OpenStax::Exchange::Client.reset!
       client_object_id2 = OpenStax::Exchange::Client.send(:client).object_id
       expect(client_object_id1).to_not eq(client_object_id2)
     end
@@ -38,7 +38,7 @@ describe OpenStax::Exchange::Client do
 
   context "client instance configuration" do
     before(:each) do
-      OpenStax::Exchange::Client.clear_client
+      OpenStax::Exchange::Client.reset!
     end
 
     it "can be configured to use a real exchange client" do
