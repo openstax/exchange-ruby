@@ -3,7 +3,9 @@ require 'securerandom'
 module OpenStax
   module Exchange
     module Client
-      class FakeClient < ClientInstanceBase
+      class FakeClient
+        include ClientInstance
+
         def self.configure
           yield configuration
         end
@@ -26,7 +28,7 @@ module OpenStax
           @token = SecureRandom.hex(64)
         end
 
-        def is_real?
+        def is_real_client?
           false
         end
 

@@ -2,8 +2,8 @@ module OpenStax
   module Exchange
     module Client
 
-      class ClientInstanceBase
-        def is_real?
+      module ClientInstance
+        def is_real_client?
           raise NotImplementedError
         end
 

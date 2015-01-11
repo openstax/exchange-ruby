@@ -3,7 +3,8 @@ require 'oauth2'
 module OpenStax
   module Exchange
     module Client
-      class RealClient < ClientInstanceBase
+      class RealClient
+        include ClientInstance
 
         def initialize(client_configuration)
           @platform_id     = client_configuration.platform_id
@@ -22,7 +23,7 @@ module OpenStax
           @oauth_token = @oauth_client.client_credentials.get_token
         end
 
-        def is_real?
+        def is_real_client?
           true
         end
 

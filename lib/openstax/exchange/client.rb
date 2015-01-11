@@ -1,7 +1,7 @@
 require "openstax/exchange/client/version"
 require "openstax/exchange/client/client"
 require "openstax/exchange/client/client_configuration"
-require "openstax/exchange/client/client_instance_base"
+require "openstax/exchange/client/client_instance"
 require "openstax/exchange/client/real_client"
 require "openstax/exchange/client/fake_client"
 require "openstax/exchange/client/fake_client_configuration"

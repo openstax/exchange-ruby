@@ -19,7 +19,7 @@ describe OpenStax::Exchange::Client do
   context "internal client instance" do
     it "#client defaults to a real exchange client" do
       client = OpenStax::Exchange::Client.send(:client)
-      expect(client.is_real?).to be_truthy
+      expect(client.is_real_client?).to be_truthy
     end
 
     it "#client returns the same client object on successive calls" do
@@ -44,13 +44,13 @@ describe OpenStax::Exchange::Client do
     it "can be configured to use a real exchange client" do
       OpenStax::Exchange::Client.use_real_client
       client = OpenStax::Exchange::Client.send(:client)
-      expect(client.is_real?).to be_truthy
+      expect(client.is_real_client?).to be_truthy
     end
 
     it "can be configured to use a fake exchange client" do
       OpenStax::Exchange::Client.use_fake_client
       client = OpenStax::Exchange::Client.send(:client)
-      expect(client.is_real?).to be_falsy
+      expect(client.is_real_client?).to be_falsy
     end
   end
 
