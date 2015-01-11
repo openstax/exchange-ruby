@@ -19,10 +19,6 @@ module OpenStax
           attr_accessor :api_version
         end
 
-        def is_real?
-          true
-        end
-
         def initialize
           @platform_id     = self.class.configuration.platform_id
           @platform_secret = self.class.configuration.platform_secret
@@ -35,6 +31,10 @@ module OpenStax
             site: @server_base_url)
 
           @oauth_token = @oauth_client.client_credentials.get_token
+        end
+
+        def is_real?
+          true
         end
 
         def token

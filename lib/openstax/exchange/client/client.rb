@@ -37,6 +37,10 @@ module OpenStax
         def is_real?
           raise NotImplementedError
         end
+
+        def token
+          raise NotImplementedError
+        end
       end
 
       def self.clear_client
@@ -44,7 +48,11 @@ module OpenStax
       end
 
       def self.create_identifier
-        client.create_identifier
+        begin
+          client.create_identifier
+        rescue => error
+          raise ClientError.new("create_identifier failure", error)
+        end
       end
 
       def self.create_multiple_choice(*args)
@@ -54,7 +62,11 @@ module OpenStax
       private
 
       def self.client
-        @client ||= create_client
+        begin
+          @client ||= create_client
+        rescue => error
+          raise ClientError.new("initialization failure", error)
+        end
       end
 
       def self.create_client
