@@ -43,6 +43,14 @@ module OpenStax
         @client = nil
       end
 
+      def self.create_identifier
+        client.create_identifier
+      end
+
+      def self.create_multiple_choice(*args)
+        client.create_multiple_choice(*args)
+      end
+
       private
 
       def self.client
