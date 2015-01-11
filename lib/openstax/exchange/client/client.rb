@@ -56,7 +56,11 @@ module OpenStax
       end
 
       def self.create_multiple_choice(*args)
-        client.create_multiple_choice(*args)
+        begin
+          client.create_multiple_choice(*args)
+        rescue => error
+          raise ClientError.new("create_multiple_choice failure", error)
+        end
       end
 
       private

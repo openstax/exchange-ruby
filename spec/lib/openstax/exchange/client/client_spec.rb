@@ -144,12 +144,73 @@ describe OpenStax::Exchange::Client do
             answer_string   = 'answer_string'
 
             response = OpenStax::Exchange::Client.create_multiple_choice(
-              identifier, resource_string, trial, answer_string);
+              identifier, resource_string, trial, answer_string)
 
             expect(response['identifier']).to eq(identifier)
             expect(response['resource']).to eq(resource_string)
             expect(response['trial']).to eq(trial)
             expect(response['answer']).to eq(answer_string)
+          end
+          it "allows multiple trials per resource" do
+            identifier = OpenStax::Exchange::Client.create_identifier
+
+            # must have the form of a "trusted resource"
+            # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+            resource_string = 'http://exercises.openstax.org/exercises/1234'
+            trial1          = '1'
+            trial2          = '2'
+            answer_string   = 'answer_string'
+
+            response = nil
+
+            expect {
+              response = OpenStax::Exchange::Client.create_multiple_choice(
+                identifier, resource_string, trial1, answer_string)
+            }.to_not raise_error
+            expect(response['trial']).to eq(trial1)
+
+            expect {
+              response = OpenStax::Exchange::Client.create_multiple_choice(
+                identifier, resource_string, trial2, answer_string)
+            }.to_not raise_error
+            expect(response['trial']).to eq(trial2)
+          end
+        end
+        context "duplicate response for a given trial" do
+          it "raises an exception" do
+            identifier = OpenStax::Exchange::Client.create_identifier
+
+            # must have the form of a "trusted resource"
+            # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+            resource_string = 'http://exercises.openstax.org/exercises/1234'
+            trial           = '1'
+            answer_string   = 'answer_string'
+
+            expect {
+              response = OpenStax::Exchange::Client.create_multiple_choice(
+                identifier, resource_string, trial, answer_string)
+            }.to_not raise_error
+
+            expect {
+              response = OpenStax::Exchange::Client.create_multiple_choice(
+                identifier, resource_string, trial, answer_string)
+            }.to raise_error(OpenStax::Exchange::Client::ClientError)
+          end
+        end
+        context "invalid resource string" do
+          it "raises an exception" do
+            identifier = OpenStax::Exchange::Client.create_identifier
+
+            # must have the form of a "trusted resource"
+            # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+            resource_string = 'http://example.com/exercises/1234'
+            trial           = '1'
+            answer_string   = 'answer_string'
+
+            expect {
+              response = OpenStax::Exchange::Client.create_multiple_choice(
+                identifier, resource_string, trial, answer_string)
+            }.to raise_error(OpenStax::Exchange::Client::ClientError)
           end
         end
       end
