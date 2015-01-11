@@ -31,7 +31,7 @@ module OpenStax
       def self.create_identifier
         begin
           client.create_identifier
-        rescue => error
+        rescue StandardError => error
           raise ClientError.new("create_identifier failure", error)
         end
       end
@@ -39,7 +39,7 @@ module OpenStax
       def self.create_multiple_choice(*args)
         begin
           client.create_multiple_choice(*args)
-        rescue => error
+        rescue StandardError => error
           raise ClientError.new("create_multiple_choice failure", error)
         end
       end
@@ -49,7 +49,7 @@ module OpenStax
       def self.client
         begin
           @client ||= create_client
-        rescue => error
+        rescue StandardError => error
           raise ClientError.new("initialization failure", error)
         end
       end
