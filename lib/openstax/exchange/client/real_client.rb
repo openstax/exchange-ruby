@@ -9,12 +9,15 @@ module OpenStax
           @platform_id     = client_configuration.platform_id
           @platform_secret = client_configuration.platform_secret
           @server_base_url = client_configuration.server_base_url
+          @server_port     = client_configuration.server_port
           @api_version     = client_configuration.api_version
+
+          @server_base = "#{@server_base_url}:#{@server_port}"
 
           @oauth_client = OAuth2::Client.new(
             @platform_id,
             @platform_secret,
-            site: @server_base_url)
+            site: @server_base)
 
           @oauth_token = @oauth_client.client_credentials.get_token
         end
@@ -33,7 +36,7 @@ module OpenStax
 
           response = @oauth_token.request(
             :post,
-            "#{@server_base_url}/api/identifiers",
+            "#{@server_base}/api/identifiers",
             options)
 
           return JSON.parse(response.body)['identifier']
@@ -48,7 +51,7 @@ module OpenStax
 
           response = @oauth_token.request(
             :post,
-            "#{@server_base_url}/api/events/platforms/multiple_choices",
+            "#{@server_base}/api/events/platforms/multiple_choices",
             options)
 
           return JSON.parse(response.body)

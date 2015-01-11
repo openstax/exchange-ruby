@@ -4,14 +4,15 @@ describe OpenStax::Exchange::Client do
 
   before(:each) do
     OpenStax::Exchange::Client.configure do |config|
-      config.platform_id     = '123'
-      config.platform_secret = 'abc'
-      config.server_base_url = 'http://localhost:3003'
-      config.api_version     = 'v1'
+      config.platform_id     = DEFAULT_CLIENT_PLATFORM_ID
+      config.platform_secret = DEFAULT_CLIENT_PLATFORM_SECRET
+      config.server_base_url = DEFAULT_CLIENT_SERVER_BASE_URL
+      config.server_port     = DEFAULT_CLIENT_SERVER_PORT
+      config.api_version     = DEFAULT_CLIENT_API_VERSION
     end
 
     OpenStax::Exchange::Client::FakeClient.configure do |config|
-      config.registered_platforms = {'123' => 'abc'}
+      config.registered_platforms = {DEFAULT_CLIENT_PLATFORM_ID => DEFAULT_CLIENT_PLATFORM_SECRET}
     end
   end
 
@@ -87,7 +88,7 @@ describe OpenStax::Exchange::Client do
         context "invalid port" do
           it "raises an exception" do
             OpenStax::Exchange::Client.configure do |config|
-              config.server_base_url = 'http://localhost:9999'
+              config.server_port = 9999
             end
             expect {
               OpenStax::Exchange::Client.send(:client)
