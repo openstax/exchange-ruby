@@ -41,17 +41,13 @@ describe OpenStax::Exchange::Client do
     end
 
     it "can be configured to use a real exchange client" do
-      OpenStax::Exchange::Client.configure do |config|
-        config.use_real_client
-      end
+      OpenStax::Exchange::Client.use_real_client
       client = OpenStax::Exchange::Client.send(:client)
       expect(client.is_real?).to be_truthy
     end
 
     it "can be configured to use a fake exchange client" do
-      OpenStax::Exchange::Client.configure do |config|
-        config.use_fake_client
-      end
+      OpenStax::Exchange::Client.use_fake_client
       client = OpenStax::Exchange::Client.send(:client)
       expect(client.is_real?).to be_falsy
     end
@@ -60,9 +56,7 @@ describe OpenStax::Exchange::Client do
   context "real client" do
     before(:each) do
       OpenStax::Exchange::Client.clear_client
-      OpenStax::Exchange::Client.configure do |config|
-        config.use_real_client
-      end
+      OpenStax::Exchange::Client.use_real_client
     end
 
     context "API V1" do
@@ -226,9 +220,7 @@ describe OpenStax::Exchange::Client do
   context "fake client" do
     before(:each) do
       OpenStax::Exchange::Client.clear_client
-      OpenStax::Exchange::Client.configure do |config|
-        config.use_fake_client
-      end
+      OpenStax::Exchange::Client.use_fake_client
     end
 
     describe "#initialize" do

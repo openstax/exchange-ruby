@@ -2,6 +2,8 @@ module OpenStax
   module Exchange
     module Client
 
+      @use_real_client = true
+
       def self.configure
         yield configuration
       end
@@ -12,6 +14,18 @@ module OpenStax
 
       def self.clear_client
         @client = nil
+      end
+
+      def self.use_real_client
+        @use_real_client = true
+      end
+
+      def self.use_fake_client
+        @use_real_client = false
+      end
+
+      def self.use_real_client?
+        !!@use_real_client
       end
 
       def self.create_identifier
@@ -41,12 +55,10 @@ module OpenStax
       end
 
       def self.create_client
-        if configuration.use_real_client?
+        if use_real_client?
           RealClient.new configuration
-        elsif configuration.use_fake_client?
-          FakeClient.new configuration
         else
-          raise "internal error - don't know how to create client instance"
+          FakeClient.new configuration
         end
       end
 
