@@ -31,6 +31,23 @@ API_VERSION_V1 = 'v1'
 
 DEFAULT_CLIENT_PLATFORM_ID     = '123'
 DEFAULT_CLIENT_PLATFORM_SECRET = 'abc'
-DEFAULT_CLIENT_SERVER_BASE_URL = 'http://localhost'
+DEFAULT_CLIENT_SERVER_SCHEME   = 'http'
+DEFAULT_CLIENT_SERVER_HOST     = 'localhost'
 DEFAULT_CLIENT_SERVER_PORT     = 3003
+DEFAULT_CLIENT_SERVER_PATH     = nil
 DEFAULT_CLIENT_API_VERSION     = API_VERSION_V1
+
+def client_server_url(options = {})
+  server_scheme = options.fetch(:scheme) { DEFAULT_CLIENT_SERVER_SCHEME }
+  server_host   = options.fetch(:host)   { DEFAULT_CLIENT_SERVER_HOST }
+  server_port   = options.fetch(:port)   { DEFAULT_CLIENT_SERVER_PORT }
+  server_path   = options.fetch(:path)   { DEFAULT_CLIENT_SERVER_PATH }
+
+  url = URI::Generic.build(
+    scheme: server_scheme,
+    host:   server_host,
+    port:   server_port,
+    path:   server_path)
+
+  url.to_s
+end

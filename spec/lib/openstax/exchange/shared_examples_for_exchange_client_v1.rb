@@ -7,8 +7,7 @@ RSpec.shared_examples "exchange client api v1" do
     OpenStax::Exchange.configure do |config|
       config.client_platform_id     = DEFAULT_CLIENT_PLATFORM_ID
       config.client_platform_secret = DEFAULT_CLIENT_PLATFORM_SECRET
-      config.client_server_base_url = DEFAULT_CLIENT_SERVER_BASE_URL
-      config.client_server_port     = DEFAULT_CLIENT_SERVER_PORT
+      config.client_server_url      = client_server_url
       config.client_api_version     = API_VERSION_V1
     end
   end
@@ -23,7 +22,7 @@ RSpec.shared_examples "exchange client api v1" do
     context "invalid server" do
       it "raises an exception" do
         OpenStax::Exchange.configure do |config|
-          config.client_server_base_url = 'http://this.is.a.fake.address'
+          config.client_server_url = client_server_url(host: 'this.is.a.fake.address')
         end
         expect {
           OpenStax::Exchange.send(:client)
@@ -33,7 +32,7 @@ RSpec.shared_examples "exchange client api v1" do
     context "invalid port" do
       it "raises an exception" do
         OpenStax::Exchange.configure do |config|
-          config.client_server_port = 9999
+          config.client_server_url = client_server_url(port: 9999)
         end
         expect {
           OpenStax::Exchange.send(:client)

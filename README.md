@@ -10,25 +10,57 @@ A ruby client for interfacing with the OpenStax Exchange API.
 Usage
 -----
 
+Include the gem in your project:
+```rb
+gem 'openstax_exchange'
+```
+
+Include the following in your script:
+
 ```rb
 require 'openstax_exchange'
 ```
 
+Configure the client's knowledge of the Exchange server:
+
 ```rb
 OpenStax::Exchange.configure do |config|
-  # ... set config options ...
+  config.client_platform_id     = '123'
+  config.client_platform_secret = 'abc' ## do not check real secrets into version control!
+  config.client_server_url      = 'http://www.example.com:3000/base/path'
+  config.client_api_version     = 'v1'
 end
 ```
+
+By default the real Exchane client will be used.  However, the choice can be made explicitly by using the following:
 
 ```rb
 OpenStax::Exchange.use_real_client
 OpenStax::Exchange.use_fake_client
 ```
 
+If using the fake client, configure the faked server settings:
+
 ```rb
 OpenStax::Exchange::FakeClient.configure do |config|
-  # .. set fake client options ...
+  config.registered_platforms   = {'123' => 'abc'}
+  config.server_url             = 'http://www.example.com:3000/base/path'
+  config.supported_api_versions = ['v1']
 end
+```
+
+After changing the client configuration, use:
+```rb
+OpenStax::Exchange.reset!
+```
+to ensure that the changes take effect.
+
+The following Exhchange API methods are currently supported:
+```rb
+identifier = OpenStax::Exchange.create_identifier
+```
+```rb
+response = OpenStax::Exchange.record_multiple_choice_answer(identifier, resource_uri, trial, answer)
 ```
 
 ## Contributing

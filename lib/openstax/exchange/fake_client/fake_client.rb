@@ -16,21 +16,16 @@ module OpenStax
       end
 
       def initialize(exchange_configuration)
-        @client_config_platform_id          = exchange_configuration.client_platform_id
-        @client_config_platform_secret      = exchange_configuration.client_platform_secret
-        @client_config_server_base_url      = exchange_configuration.client_server_base_url
-        @client_config_server_port          = exchange_configuration.client_server_port
-        @client_config_api_version          = exchange_configuration.client_api_version
+        @client_config_platform_id     = exchange_configuration.client_platform_id
+        @client_config_platform_secret = exchange_configuration.client_platform_secret
+        @client_config_server_url      = exchange_configuration.client_server_url
+        @client_config_api_version     = exchange_configuration.client_api_version
 
-        @server_registered_platforms = self.class.configuration.registered_platforms
-        @server_server_base_url      = self.class.configuration.server_base_url
-        @server_server_port          = self.class.configuration.server_port
+        @server_registered_platforms   = self.class.configuration.registered_platforms
+        @server_server_url             = self.class.configuration.server_url
 
-        raise "invalid server" \
-          unless @client_config_server_base_url == @server_server_base_url
-
-        raise "invalid port" \
-          unless @client_config_server_port == @server_server_port
+        raise "invalid server url" \
+          unless @client_config_server_url == @server_server_url
 
         raise "invalid platform credentials" \
           unless @server_registered_platforms.fetch(@client_config_platform_id) == @client_config_platform_secret
