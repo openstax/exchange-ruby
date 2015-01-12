@@ -55,7 +55,7 @@ OpenStax::Exchange.reset!
 ```
 to ensure that the changes take effect.
 
-The following Exhchange API methods are currently supported:
+The following Exchange API methods are currently supported:
 ```rb
 identifier = OpenStax::Exchange.create_identifier
 ```
