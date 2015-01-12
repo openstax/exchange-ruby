@@ -32,7 +32,7 @@ OpenStax::Exchange.configure do |config|
 end
 ```
 
-By default the real Exchane client will be used.  However, the choice can be made explicitly by using the following:
+By default the real Exchange client will be used.  However, the choice can be made explicitly by using the following:
 
 ```rb
 OpenStax::Exchange.use_real_client
