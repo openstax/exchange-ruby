@@ -14,7 +14,7 @@ module OpenStax
         raise NotImplementedError
       end
 
-      def create_multiple_choice(identifier, resource, trial, answer)
+      def record_multiple_choice_answer(identifier, resource, trial, answer)
         raise NotImplementedError
       end
 

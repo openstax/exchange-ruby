@@ -31,18 +31,18 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"0ca465e9d10227536649a9a792cc54db"
+      - W/"030ffc34c73241d72d05aca483ddd03f"
       X-Request-Id:
-      - b36101f4-d20d-4252-984e-9d05e407b964
+      - f9eeabfc-3bbc-4194-9f5e-5933e57c1220
       X-Runtime:
-      - '0.038247'
+      - '0.015146'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"access_token":"979ac610d4da56843c76250ffe2a33a7a1324d54c12c3b6a06f2ef5a0cc53588","token_type":"bearer"}'
+      string: ! '{"access_token":"42ad7558a7079e5ffe21572066a090693e5da796fcd64c762ef24c74de196f82","token_type":"bearer"}'
     http_version: 
-  recorded_at: Mon, 12 Jan 2015 20:14:54 GMT
+  recorded_at: Mon, 12 Jan 2015 21:08:51 GMT
 recorded_with: VCR 2.9.3

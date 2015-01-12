@@ -31,20 +31,20 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"be8dc90744573d262b3ff432fe70f539"
+      - W/"f04b2cfc92d51ad3cc0806eeea34ae39"
       X-Request-Id:
-      - d67f1f2c-bb04-42c3-bb4d-bde2c61d20ef
+      - 0ade458e-d6b6-47ff-88af-36a192d55ed4
       X-Runtime:
-      - '0.030440'
+      - '0.029061'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"access_token":"fb1b0e8118ad01b15151d90fd05f458048f9b76b966aa7d10ffa1965f61133b6","token_type":"bearer"}'
+      string: ! '{"access_token":"bcf348f1e3d1b3422422671a2c940d59351bad44b3b95ed3b2296c16f57675a2","token_type":"bearer"}'
     http_version: 
-  recorded_at: Mon, 12 Jan 2015 20:14:54 GMT
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/identifiers
@@ -57,7 +57,7 @@ http_interactions:
       Accept:
       - application/vnd.exchange.openstax.v1
       Authorization:
-      - Bearer fb1b0e8118ad01b15151d90fd05f458048f9b76b966aa7d10ffa1965f61133b6
+      - Bearer bcf348f1e3d1b3422422671a2c940d59351bad44b3b95ed3b2296c16f57675a2
       Content-Length:
       - '0'
   response:
@@ -74,24 +74,24 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"59e415449ec54b37812ace897e8655f7"
+      - W/"0ca26961ce9d51f60f5a467cfe7ba4c2"
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _exercises_session=QWtoMGNDZngvc0tiK1VucVJleXFDL21jWFBWc0hOVU5jdmRsWmVqTWU0aVpGcFhHNTdwdVVOUHlxekhiRm9hTHVpWUIxQk5GWGw3VzlGZERpOFBmY0E9PS0tc0dtSElNYVU0bDZxeWdHbzc4RERJdz09--2be2a78dd457d91c1ea93605dbbe570df2bc7b47;
+      - _exercises_session=TnZoWHNTaWdjZmJJUXg2VHdOdERvcTA5a2R6WURqQkJub1FMYlZYdEpKZ3hCQjJiekx2ZVdDL2ZBcWMwOW53Y3lFVHYzWHJYTFlhdW02MUVKMXdZY2c9PS0tQ1VnN1EzSmxad1BjY1d5UVNHR29xdz09--e0ce290be622c8641bdc4072f45e8f23b596a233;
         path=/; HttpOnly
       - request_method=POST; path=/
       X-Request-Id:
-      - 3471d0f1-f466-4b9f-bfcd-0a0780b262a2
+      - 15464bd1-b133-4c40-9e36-17a4b3a43ebc
       X-Runtime:
-      - '0.041990'
+      - '0.047932'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"identifier":"45170f23a20cf6fc5a7992805a6f538480de96f2ec7fb6082b87498d9f5a1dda"}'
+      string: ! '{"identifier":"e4b89fa467a1f56272ab3d4440cd784b9a8eaa377f55997c74a452c3e084bf69"}'
     http_version: 
-  recorded_at: Mon, 12 Jan 2015 20:14:54 GMT
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
 recorded_with: VCR 2.9.3

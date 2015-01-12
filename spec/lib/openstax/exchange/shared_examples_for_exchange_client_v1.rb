@@ -76,9 +76,9 @@ RSpec.shared_examples "exchange client api v1" do
     end
   end
 
-  describe "#create_multiple_choice" do
+  describe "#record_multiple_choice_answer" do
     context "success" do
-      it "creates a multiple choice response associated with the given identifier" do
+      it "creates a multiple choice answer associated with the given identifier" do
         identifier = OpenStax::Exchange.create_identifier
 
         # must have the form of a "trusted resource"
@@ -87,7 +87,7 @@ RSpec.shared_examples "exchange client api v1" do
         trial           = '1'
         answer_string   = 'answer_string'
 
-        response = OpenStax::Exchange.create_multiple_choice(
+        response = OpenStax::Exchange.record_multiple_choice_answer(
           identifier, resource_string, trial, answer_string)
 
         expect(response['identifier']).to eq(identifier)
@@ -108,13 +108,13 @@ RSpec.shared_examples "exchange client api v1" do
         response = nil
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier1, resource_string, trial, answer_string)
         }.to_not raise_error
         expect(response['identifier']).to eq(identifier1)
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier2, resource_string, trial, answer_string)
         }.to_not raise_error
         expect(response['identifier']).to eq(identifier2)
@@ -132,13 +132,13 @@ RSpec.shared_examples "exchange client api v1" do
         response = nil
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string1, trial, answer_string)
         }.to_not raise_error
         expect(response['resource']).to eq(resource_string1)
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string2, trial, answer_string)
         }.to_not raise_error
         expect(response['resource']).to eq(resource_string2)
@@ -156,13 +156,13 @@ RSpec.shared_examples "exchange client api v1" do
         response = nil
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string, trial1, answer_string)
         }.to_not raise_error
         expect(response['trial']).to eq(trial1)
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string, trial2, answer_string)
         }.to_not raise_error
         expect(response['trial']).to eq(trial2)
@@ -179,12 +179,12 @@ RSpec.shared_examples "exchange client api v1" do
         answer_string   = 'answer_string'
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string, trial, answer_string)
         }.to_not raise_error
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string, trial, answer_string)
         }.to raise_error(OpenStax::Exchange::ClientError)
       end
@@ -200,7 +200,7 @@ RSpec.shared_examples "exchange client api v1" do
         answer_string   = 'answer_string'
 
         expect {
-          response = OpenStax::Exchange.create_multiple_choice(
+          response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string, trial, answer_string)
         }.to raise_error(OpenStax::Exchange::ClientError)
       end

@@ -31,20 +31,20 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"951fb2795c930b3d618d867a5f1e17cf"
+      - W/"e82148ecc7398094123885adfdba75c5"
       X-Request-Id:
-      - 874c1cb8-9664-402e-830e-5b493b7ddd30
+      - 6b1be560-90d3-43fb-bd3f-d798b7a8e167
       X-Runtime:
-      - '0.015061'
+      - '0.018834'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"access_token":"624dc5fccd560fbe6ac859f27614782a11f0bd1bf2c4e49bd5ed49dd606621c1","token_type":"bearer"}'
+      string: ! '{"access_token":"e244b488c23861c57ced25c8dc53fa6335243fafc4f09df2e84d27a4256142d8","token_type":"bearer"}'
     http_version: 
-  recorded_at: Mon, 12 Jan 2015 20:14:55 GMT
+  recorded_at: Mon, 12 Jan 2015 21:08:53 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/identifiers
@@ -57,7 +57,7 @@ http_interactions:
       Accept:
       - application/vnd.exchange.openstax.v1
       Authorization:
-      - Bearer 624dc5fccd560fbe6ac859f27614782a11f0bd1bf2c4e49bd5ed49dd606621c1
+      - Bearer e244b488c23861c57ced25c8dc53fa6335243fafc4f09df2e84d27a4256142d8
       Content-Length:
       - '0'
   response:
@@ -74,45 +74,45 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"880383da763f416d1663c8aa4ade21ec"
+      - W/"f1c4f3ca5efef827df31d6a1a9b9b34b"
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _exercises_session=K0EyQnZBc2N0N2N4Y0lEQ2NpU2dCQzM3dU1ubEJnbENmc2wyLzFiVlJlRlpEODJoZFJ6eEZkL05nK09nWjNpeTltZ3JwUjBTejNuUzFKMDNGL3hEdVE9PS0tM0JWZW9WeW5jVklBTTYyZllyWEJndz09--bfa3d592b4f24f38adb2a08ed2bcd9fa6753df9a;
+      - _exercises_session=WGZYRWhJSVNaY3JySjVGdlMwQmtqQmRVbWZWRmNrdDNJSzNTQ1h0Q1BqNmJGU2xzdFQrbCtHQnBjVUNYbWtMRXRncHhYLzNHR241cjBRTUVDdWJLMUE9PS0tNm50UlRhVmpBeWF1VGJzZGFIdU9DQT09--2c8ce07078730b3eadc71d842efc29034f100b80;
         path=/; HttpOnly
       - request_method=POST; path=/
       X-Request-Id:
-      - 239a5ced-61a7-4c3d-aee2-631de0191bba
+      - f1b85a63-4661-4415-9682-223154ee95fe
       X-Runtime:
-      - '0.040458'
+      - '0.045214'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"identifier":"19caaeb48c3251b43b8f550c56bd3a3451aff80f33e451093ef6ab1e21687085"}'
+      string: ! '{"identifier":"649c2d0e63a37048191cad69cee18f795873ef19b222aa261d47c5711ece5ad8"}'
     http_version: 
-  recorded_at: Mon, 12 Jan 2015 20:14:55 GMT
+  recorded_at: Mon, 12 Jan 2015 21:08:53 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/events/platforms/multiple_choices
     body:
       encoding: UTF-8
-      string: ! '{"identifier":"19caaeb48c3251b43b8f550c56bd3a3451aff80f33e451093ef6ab1e21687085","resource":"http://exercises.openstax.org/exercises/1234","trial":"1","answer":"answer_string"}'
+      string: ! '{"identifier":"649c2d0e63a37048191cad69cee18f795873ef19b222aa261d47c5711ece5ad8","resource":"http://example.com/exercises/1234","trial":"1","answer":"answer_string"}'
     headers:
       User-Agent:
       - Faraday v0.9.0
       Accept:
       - application/vnd.exchange.openstax.v1
       Authorization:
-      - Bearer 624dc5fccd560fbe6ac859f27614782a11f0bd1bf2c4e49bd5ed49dd606621c1
+      - Bearer e244b488c23861c57ced25c8dc53fa6335243fafc4f09df2e84d27a4256142d8
       Content-Type:
       - application/x-www-form-urlencoded
   response:
     status:
-      code: 201
-      message: Created
+      code: 422
+      message: Unprocessable Entity
     headers:
       X-Frame-Options:
       - SAMEORIGIN
@@ -122,25 +122,24 @@ http_interactions:
       - nosniff
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"e4e7c35eafb8b48c8bdb6adfc4c82b8b"
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - no-cache
       Set-Cookie:
-      - _exercises_session=NjFxdlVXd0RCcVAzUVdycnpvMmhWVUt6djZhbEwvSTdQd1JKZUNSM21RcDd5TmFVRGVqM2ZmaEJqbFhOSlBuS0lDZ2tXeHMzUHJPYSs2TnZxVmtBcHc9PS0tdnJZdVp4VThyRlYxRnE0YSt1Y0pQdz09--2066a5057857e09f74320ccd380ba809fa89ab57;
+      - _exercises_session=cjVRUHV3OEc0L00rWEhQdGl4VDVONkhSbC9Wd0xyelNGVHFLRkxVUjE4d0xKYWdCZnBObTNkRVlRajhNbWYyNDcwK01razNlbHN5OWZVYVlUS2FoekE9PS0tbDh4N0VWTDRUdXhiRnVCeDd2NUlNdz09--0a57cbadaa3ebf05b46c4141001fe664f1ca05ca;
         path=/; HttpOnly
       - request_method=POST; path=/
       X-Request-Id:
-      - 6d418aad-7fde-4b95-ba5f-779ecf80d50a
+      - cf5ec792-42bc-44b4-9716-ff31d9c9d645
       X-Runtime:
-      - '0.154412'
+      - '0.037583'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"identifier":"19caaeb48c3251b43b8f550c56bd3a3451aff80f33e451093ef6ab1e21687085","resource":"http://exercises.openstax.org/exercises/1234","trial":"1","created_at":"2015-01-12T20:14:55.256Z","answer_type":"multiple-choice","answer":"answer_string"}'
+      string: ! '[{"code":"blank","data":{"model":{"id":null,"identifier_id":905,"resource_id":null,"trial":"1","due_at":null,"created_at":null,"updated_at":null},"attribute":"resource"},"kind":"activerecord","message":"can''t
+        be blank","offending_inputs":"resource"}]'
     http_version: 
-  recorded_at: Mon, 12 Jan 2015 20:14:55 GMT
+  recorded_at: Mon, 12 Jan 2015 21:08:53 GMT
 recorded_with: VCR 2.9.3

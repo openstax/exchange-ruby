@@ -43,7 +43,7 @@ module OpenStax
         return JSON.parse(response.body)['identifier']
       end
 
-      def create_multiple_choice(identifier, resource, trial, answer)
+      def record_multiple_choice_answer(identifier, resource, trial, answer)
         options = {}
         add_accept_header! options
         add_authorization_header! options

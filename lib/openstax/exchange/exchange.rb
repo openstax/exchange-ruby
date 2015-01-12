@@ -35,11 +35,11 @@ module OpenStax
       end
     end
 
-    def self.create_multiple_choice(*args)
+    def self.record_multiple_choice_answer(*args)
       begin
-        client.create_multiple_choice(*args)
+        client.record_multiple_choice_answer(*args)
       rescue StandardError => error
-        raise ClientError.new("create_multiple_choice failure", error)
+        raise ClientError.new("record_multiple_choice_answer failure", error)
       end
     end
 

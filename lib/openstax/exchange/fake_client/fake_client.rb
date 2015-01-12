@@ -51,7 +51,7 @@ module OpenStax
         SecureRandom.hex(64)
       end
 
-      def create_multiple_choice(identifier, resource, trial, answer)
+      def record_multiple_choice_answer(identifier, resource, trial, answer)
         @multiple_choice_responses[identifier] ||= {}
         @multiple_choice_responses[identifier][resource] ||= {}
 
