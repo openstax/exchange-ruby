@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://123:abc@localhost:3003/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"905e070ba269213c98db0d8be4363f8e"
+      X-Request-Id:
+      - 6f000446-9603-4030-87b9-86a2c3f7226d
+      X-Runtime:
+      - '0.015127'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"d1168714b1c3493cbfa0381776d18827bea3aab5946e4e94ff0fb1aa7d3c85c0","token_type":"bearer"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 20:14:54 GMT
+recorded_with: VCR 2.9.3
