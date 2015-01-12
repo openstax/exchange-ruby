@@ -7,12 +7,21 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
   c.configure_rspec_metadata!
+  # c.debug_logger = File.open("vcr_log.txt", "w")
+end
+
+accept_header = lambda do |request1, request2|
+  request1.headers['Accept'] == request2.headers['Accept']
+end
+
+authorization_header = lambda do |request1, request2|
+  request1.headers['Authorization'] == request2.headers['Authorization']
 end
 
 VCR_OPTS = {
   record: :none, ## this should be :none before pushing
   allow_unused_http_interactions: false,
-  match_requests_on: [:method, :uri, :host, :body, :headers]
+  match_requests_on: [:method, :uri, :host, :body, accept_header, authorization_header]
 }
 
 require 'openstax/exchange/client'
