@@ -28,7 +28,7 @@ describe OpenStax::Exchange::Client do
       expect(client_object_id1).to eq(client_object_id2)
     end
 
-    it "#clear_client causes a new client object to be returned by #client" do
+    it "#reset! causes a new client object to be returned by #client" do
       client_object_id1 = OpenStax::Exchange::Client.send(:client).object_id
       OpenStax::Exchange::Client.reset!
       client_object_id2 = OpenStax::Exchange::Client.send(:client).object_id
