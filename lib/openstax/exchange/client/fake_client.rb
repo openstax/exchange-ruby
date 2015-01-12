@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'uri'
 
 module OpenStax
   module Exchange
@@ -35,6 +36,7 @@ module OpenStax
             unless @server_registered_platforms.fetch(@client_config_platform_id) == @client_config_platform_secret
 
           @token = SecureRandom.hex(64)
+          @multiple_choice_responses = {}
         end
 
         def is_real_client?
@@ -48,6 +50,27 @@ module OpenStax
         def create_identifier
           SecureRandom.hex(64)
         end
+
+        def create_multiple_choice(identifier, resource, trial, answer)
+          @multiple_choice_responses[identifier] ||= {}
+          @multiple_choice_responses[identifier][resource] ||= {}
+
+          raise "invalid resource" \
+            unless URI(resource).host == "exercises.openstax.org"
+
+          raise "duplicate response for (identifier,resource,trial) triplet" \
+            if @multiple_choice_responses[identifier][resource][trial]
+
+          @multiple_choice_responses[identifier][resource][trial] = answer
+
+          return {
+            'identifier' => identifier,
+            'resource'   => resource,
+            'trial'      => trial,
+            'answer'     => answer
+          }
+        end
+
       end
     end
   end

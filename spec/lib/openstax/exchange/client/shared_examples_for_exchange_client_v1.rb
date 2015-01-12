@@ -78,7 +78,7 @@ RSpec.shared_examples "exchange client api v1" do
 
   describe "#create_multiple_choice" do
     context "success" do
-      xit "creates a multiple choice response associated with the given identifier" do
+      it "creates a multiple choice response associated with the given identifier" do
         identifier = OpenStax::Exchange::Client.create_identifier
 
         # must have the form of a "trusted resource"
@@ -95,7 +95,7 @@ RSpec.shared_examples "exchange client api v1" do
         expect(response['trial']).to eq(trial)
         expect(response['answer']).to eq(answer_string)
       end
-      xit "allows multiple trials per resource" do
+      it "allows multiple trials per resource" do
         identifier = OpenStax::Exchange::Client.create_identifier
 
         # must have the form of a "trusted resource"
@@ -121,7 +121,7 @@ RSpec.shared_examples "exchange client api v1" do
       end
     end
     context "duplicate response for a given trial" do
-      xit "raises an exception" do
+      it "raises an exception" do
         identifier = OpenStax::Exchange::Client.create_identifier
 
         # must have the form of a "trusted resource"
@@ -142,7 +142,7 @@ RSpec.shared_examples "exchange client api v1" do
       end
     end
     context "invalid resource string" do
-      xit "raises an exception" do
+      it "raises an exception" do
         identifier = OpenStax::Exchange::Client.create_identifier
 
         # must have the form of a "trusted resource"
