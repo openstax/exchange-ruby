@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'openstax/exchange/client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "openstax-exchange-client"
+  spec.name          = "openstax_exchange"
   spec.version       = OpenStax::Exchange::Client::VERSION
   spec.authors       = ["Kevin Burleigh"]
   spec.email         = ["klb@kindlinglabs"]
   spec.summary       = %q{Ruby client for OpenStax Exchange}
   spec.description   = %q{}
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/openstax/exchange-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
