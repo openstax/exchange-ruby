@@ -24,7 +24,7 @@ VCR_OPTS = {
   match_requests_on: [:method, :uri, :host, :body, accept_header, authorization_header]
 }
 
-require 'openstax/exchange'
+require 'openstax_exchange'
 require 'lib/openstax/exchange/shared_examples_for_exchange_client_v1'
 
 API_VERSION_V1 = 'v1'
