@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenStax::Exchange::Client do
+describe OpenStax::Exchange::Client, vcr: VCR_OPTS do
 
   before(:each) do
     OpenStax::Exchange::Client.configure do |config|

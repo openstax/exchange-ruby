@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenStax::Exchange::Client::RealClient do
+describe OpenStax::Exchange::Client::RealClient, vcr: VCR_OPTS do
   before(:each) do
     OpenStax::Exchange::Client.use_real_client
   end
