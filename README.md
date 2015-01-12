@@ -15,14 +15,14 @@ require 'openstax_exchange'
 ```
 
 ```rb
-OpenStax::Exchange::Client.configure do |config|
+OpenStax::Exchange.configure do |config|
   # ... set config options ...
 end
 ```
 
 ```rb
-OpenStax::Exchange::Client.use_real_client
-OpenStax::Exchange::Client.use_fake_client
+OpenStax::Exchange.use_real_client
+OpenStax::Exchange.use_fake_client
 ```
 
 ```rb
