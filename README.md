@@ -11,7 +11,7 @@ Usage
 -----
 
 ```rb
-require 'exchange_client'
+require 'openstax_exchange'
 ```
 
 ```rb
