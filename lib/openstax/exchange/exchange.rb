@@ -8,7 +8,7 @@ module OpenStax
     end
 
     def self.configuration
-      @configuration ||= ClientConfiguration.new
+      @configuration ||= Configuration.new
     end
 
     def self.reset!

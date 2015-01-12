@@ -15,12 +15,12 @@ module OpenStax
         @configuration ||= Configuration.new
       end
 
-      def initialize(client_configuration)
-        @client_config_platform_id          = client_configuration.platform_id
-        @client_config_platform_secret      = client_configuration.platform_secret
-        @client_config_server_base_url      = client_configuration.server_base_url
-        @client_config_server_port          = client_configuration.server_port
-        @client_config_api_version          = client_configuration.api_version
+      def initialize(exchange_configuration)
+        @client_config_platform_id          = exchange_configuration.client_platform_id
+        @client_config_platform_secret      = exchange_configuration.client_platform_secret
+        @client_config_server_base_url      = exchange_configuration.client_server_base_url
+        @client_config_server_port          = exchange_configuration.client_server_port
+        @client_config_api_version          = exchange_configuration.client_api_version
 
         @server_registered_platforms = self.class.configuration.registered_platforms
         @server_server_base_url      = self.class.configuration.server_base_url

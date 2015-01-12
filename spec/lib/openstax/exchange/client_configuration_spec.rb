@@ -4,11 +4,11 @@ describe OpenStax::Exchange, vcr: VCR_OPTS do
 
   before(:each) do
     OpenStax::Exchange.configure do |config|
-      config.platform_id     = DEFAULT_CLIENT_PLATFORM_ID
-      config.platform_secret = DEFAULT_CLIENT_PLATFORM_SECRET
-      config.server_base_url = DEFAULT_CLIENT_SERVER_BASE_URL
-      config.server_port     = DEFAULT_CLIENT_SERVER_PORT
-      config.api_version     = DEFAULT_CLIENT_API_VERSION
+      config.client_platform_id     = DEFAULT_CLIENT_PLATFORM_ID
+      config.client_platform_secret = DEFAULT_CLIENT_PLATFORM_SECRET
+      config.client_server_base_url = DEFAULT_CLIENT_SERVER_BASE_URL
+      config.client_server_port     = DEFAULT_CLIENT_SERVER_PORT
+      config.client_api_version     = DEFAULT_CLIENT_API_VERSION
     end
 
     OpenStax::Exchange::FakeClient.configure do |config|

@@ -6,12 +6,12 @@ module OpenStax
     class RealClient
       include ClientInstance
 
-      def initialize(client_configuration)
-        @platform_id     = client_configuration.platform_id
-        @platform_secret = client_configuration.platform_secret
-        @server_base_url = client_configuration.server_base_url
-        @server_port     = client_configuration.server_port
-        @api_version     = client_configuration.api_version
+      def initialize(exchange_configuration)
+        @platform_id     = exchange_configuration.client_platform_id
+        @platform_secret = exchange_configuration.client_platform_secret
+        @server_base_url = exchange_configuration.client_server_base_url
+        @server_port     = exchange_configuration.client_server_port
+        @api_version     = exchange_configuration.client_api_version
 
         @server_base = "#{@server_base_url}:#{@server_port}"
 

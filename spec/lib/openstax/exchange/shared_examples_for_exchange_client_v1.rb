@@ -5,11 +5,11 @@ RSpec.shared_examples "exchange client api v1" do
   before(:each) do
     OpenStax::Exchange.reset!
     OpenStax::Exchange.configure do |config|
-      config.platform_id     = DEFAULT_CLIENT_PLATFORM_ID
-      config.platform_secret = DEFAULT_CLIENT_PLATFORM_SECRET
-      config.server_base_url = DEFAULT_CLIENT_SERVER_BASE_URL
-      config.server_port     = DEFAULT_CLIENT_SERVER_PORT
-      config.api_version     = API_VERSION_V1
+      config.client_platform_id     = DEFAULT_CLIENT_PLATFORM_ID
+      config.client_platform_secret = DEFAULT_CLIENT_PLATFORM_SECRET
+      config.client_server_base_url = DEFAULT_CLIENT_SERVER_BASE_URL
+      config.client_server_port     = DEFAULT_CLIENT_SERVER_PORT
+      config.client_api_version     = API_VERSION_V1
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.shared_examples "exchange client api v1" do
     context "invalid server" do
       it "raises an exception" do
         OpenStax::Exchange.configure do |config|
-          config.server_base_url = 'http://this.is.a.fake.address'
+          config.client_server_base_url = 'http://this.is.a.fake.address'
         end
         expect {
           OpenStax::Exchange.send(:client)
@@ -33,7 +33,7 @@ RSpec.shared_examples "exchange client api v1" do
     context "invalid port" do
       it "raises an exception" do
         OpenStax::Exchange.configure do |config|
-          config.server_port = 9999
+          config.client_server_port = 9999
         end
         expect {
           OpenStax::Exchange.send(:client)
@@ -43,7 +43,7 @@ RSpec.shared_examples "exchange client api v1" do
     context "invalid platform id" do
       it "raises an exception" do
         OpenStax::Exchange.configure do |config|
-          config.platform_id = '999'
+          config.client_platform_id = '999'
         end
         expect {
           OpenStax::Exchange.send(:client)
@@ -53,7 +53,7 @@ RSpec.shared_examples "exchange client api v1" do
     context "invalid platform secret" do
       it "raises an exception" do
         OpenStax::Exchange.configure do |config|
-          config.platform_secret = 'not_the_secret'
+          config.client_platform_secret = 'not_the_secret'
         end
         expect {
           OpenStax::Exchange.send(:client)
