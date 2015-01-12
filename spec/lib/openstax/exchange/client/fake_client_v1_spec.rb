@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenStax::Exchange::Client do
+describe OpenStax::Exchange::Client::FakeClient do
   before(:each) do
     OpenStax::Exchange::Client.use_fake_client
     OpenStax::Exchange::Client::FakeClient.configure do |config|

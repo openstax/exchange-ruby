@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenStax::Exchange::Client do
+describe OpenStax::Exchange::Client::RealClient do
   before(:each) do
     OpenStax::Exchange::Client.use_real_client
   end

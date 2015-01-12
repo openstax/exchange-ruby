@@ -95,7 +95,55 @@ RSpec.shared_examples "exchange client api v1" do
         expect(response['trial']).to eq(trial)
         expect(response['answer']).to eq(answer_string)
       end
-      it "allows multiple trials per resource" do
+      it "allows answers with distinct identifiers to be saved" do
+        identifier1 = OpenStax::Exchange::Client.create_identifier
+        identifier2 = OpenStax::Exchange::Client.create_identifier
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string = 'http://exercises.openstax.org/exercises/1234'
+        trial           = '1'
+        answer_string   = 'answer_string'
+
+        response = nil
+
+        expect {
+          response = OpenStax::Exchange::Client.create_multiple_choice(
+            identifier1, resource_string, trial, answer_string)
+        }.to_not raise_error
+        expect(response['identifier']).to eq(identifier1)
+
+        expect {
+          response = OpenStax::Exchange::Client.create_multiple_choice(
+            identifier2, resource_string, trial, answer_string)
+        }.to_not raise_error
+        expect(response['identifier']).to eq(identifier2)
+      end
+      it "allows answers with distinct resources to be saved" do
+        identifier = OpenStax::Exchange::Client.create_identifier
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string1 = 'http://exercises.openstax.org/exercises/1234'
+        resource_string2 = 'http://exercises.openstax.org/exercises/3456'
+        trial            = '1'
+        answer_string    = 'answer_string'
+
+        response = nil
+
+        expect {
+          response = OpenStax::Exchange::Client.create_multiple_choice(
+            identifier, resource_string1, trial, answer_string)
+        }.to_not raise_error
+        expect(response['resource']).to eq(resource_string1)
+
+        expect {
+          response = OpenStax::Exchange::Client.create_multiple_choice(
+            identifier, resource_string2, trial, answer_string)
+        }.to_not raise_error
+        expect(response['resource']).to eq(resource_string2)
+      end
+      it "allows answers with distinct trials to be saved" do
         identifier = OpenStax::Exchange::Client.create_identifier
 
         # must have the form of a "trusted resource"
@@ -120,7 +168,7 @@ RSpec.shared_examples "exchange client api v1" do
         expect(response['trial']).to eq(trial2)
       end
     end
-    context "duplicate response for a given trial" do
+    context "duplicate (identifer,resource,trial) triplet" do
       it "raises an exception" do
         identifier = OpenStax::Exchange::Client.create_identifier
 
