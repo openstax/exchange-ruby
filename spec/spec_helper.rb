@@ -2,6 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require 'openstax/exchange/client'
+require 'lib/openstax/exchange/client/shared_examples_for_exchange_client_v1'
 
 API_VERSION_V1 = 'v1'
 
