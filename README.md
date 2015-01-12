@@ -29,14 +29,7 @@ OpenStax::Exchange::Client.use_fake_client
 OpenStax::Exchange::FakeClient.configure do |config|
   # .. set fake client options ...
 end
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install exchange-client
+```
 
 ## Contributing
 
