@@ -1,0 +1,8 @@
+require "openstax/exchange/version"
+require "openstax/exchange/exchange"
+require "openstax/exchange/client_configuration"
+require "openstax/exchange/client_instance"
+require "openstax/exchange/real_client/real_client"
+require "openstax/exchange/fake_client/fake_client"
+require "openstax/exchange/fake_client/fake_client_configuration"
+require "openstax/exchange/exceptions"

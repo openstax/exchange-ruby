@@ -19,12 +19,12 @@ authorization_header = lambda do |request1, request2|
 end
 
 VCR_OPTS = {
-  record: :none, ## this should be :none before pushing
+  record: :once, ## this should be :none before pushing
   allow_unused_http_interactions: false,
   match_requests_on: [:method, :uri, :host, :body, accept_header, authorization_header]
 }
 
-require 'openstax/exchange/client'
+require 'openstax/exchange'
 require 'lib/openstax/exchange/client/shared_examples_for_exchange_client_v1'
 
 API_VERSION_V1 = 'v1'
