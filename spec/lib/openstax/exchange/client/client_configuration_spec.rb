@@ -12,7 +12,10 @@ describe OpenStax::Exchange::Client do
     end
 
     OpenStax::Exchange::Client::FakeClient.configure do |config|
-      config.registered_platforms = {DEFAULT_CLIENT_PLATFORM_ID => DEFAULT_CLIENT_PLATFORM_SECRET}
+      config.registered_platforms   = {DEFAULT_CLIENT_PLATFORM_ID => DEFAULT_CLIENT_PLATFORM_SECRET}
+      config.server_base_url        = DEFAULT_CLIENT_SERVER_BASE_URL
+      config.server_port            = DEFAULT_CLIENT_SERVER_PORT
+      config.supported_api_versions = [ DEFAULT_CLIENT_API_VERSION ]
     end
   end
 

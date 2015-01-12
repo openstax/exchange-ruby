@@ -16,7 +16,10 @@ describe OpenStax::Exchange::Client do
       end
 
       OpenStax::Exchange::Client::FakeClient.configure do |config|
-        config.registered_platforms = {DEFAULT_CLIENT_PLATFORM_ID => DEFAULT_CLIENT_PLATFORM_SECRET}
+        config.registered_platforms   = {DEFAULT_CLIENT_PLATFORM_ID => DEFAULT_CLIENT_PLATFORM_SECRET}
+        config.server_base_url        = DEFAULT_CLIENT_SERVER_BASE_URL
+        config.server_port            = DEFAULT_CLIENT_SERVER_PORT
+        config.supported_api_versions = [API_VERSION_V1]
       end
     end
 
@@ -27,18 +30,24 @@ describe OpenStax::Exchange::Client do
           expect(client.token).to_not be_nil
         end
       end
-    end
-
-    describe "#create_identifier" do
-      context "success" do
-        it "creates and returns a new identifier" do
-          identifier = OpenStax::Exchange::Client.create_identifier
-          expect(identifier).to match(/^[a-fA-F0-9]+$/)
+      context "invalid server" do
+        it "raises an exception" do
+          OpenStax::Exchange::Client.configure do |config|
+            config.server_base_url = 'http://this.is.a.fake.address'
+          end
+          expect {
+            OpenStax::Exchange::Client.send(:client)
+          }.to raise_error(OpenStax::Exchange::Client::ClientError)
         end
-        it "creates a distinct identifer per invokation" do
-          identifier1 = OpenStax::Exchange::Client.create_identifier
-          identifier2 = OpenStax::Exchange::Client.create_identifier
-          expect(identifier1).to_not eq(identifier2)
+      end
+      context "invalid port" do
+        it "raises an exception" do
+          OpenStax::Exchange::Client.configure do |config|
+            config.server_port = 9999
+          end
+          expect {
+            OpenStax::Exchange::Client.send(:client)
+          }.to raise_error(OpenStax::Exchange::Client::ClientError)
         end
       end
       context "invalid platform id" do
@@ -59,6 +68,20 @@ describe OpenStax::Exchange::Client do
           expect {
             OpenStax::Exchange::Client.send(:client)
           }.to raise_error(OpenStax::Exchange::Client::ClientError)
+        end
+      end
+    end
+
+    describe "#create_identifier" do
+      context "success" do
+        it "creates and returns a new identifier" do
+          identifier = OpenStax::Exchange::Client.create_identifier
+          expect(identifier).to match(/^[a-fA-F0-9]+$/)
+        end
+        it "creates a distinct identifer per invokation" do
+          identifier1 = OpenStax::Exchange::Client.create_identifier
+          identifier2 = OpenStax::Exchange::Client.create_identifier
+          expect(identifier1).to_not eq(identifier2)
         end
       end
     end
