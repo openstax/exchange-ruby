@@ -1,14 +1,34 @@
-# Exchange::Client
+exchange-ruby
+=============
 
-TODO: Write a gem description
+[![Gem Version](https://badge.fury.io/rb/openstax_exchange.svg)](http://badge.fury.io/rb/openstax_exchange)
+[![Build Status](https://travis-ci.org/openstax/exchange-ruby.svg?branch=master)](https://travis-ci.org/openstax/exchange-ruby)
+[![Code Climate](https://codeclimate.com/github/openstax/exchange-ruby.png)](https://codeclimate.com/github/openstax/exchange-ruby)
 
-## Installation
+A ruby client for interfacing with the OpenStax Exchange API.
 
-Add this line to your application's Gemfile:
+Usage
+-----
 
-```ruby
-gem 'exchange-client'
+```rb
+require 'exchange_client'
 ```
+
+```rb
+OpenStax::Exchange::Client.configure do |config|
+  # ... set config options ...
+end
+```
+
+```rb
+OpenStax::Exchange::Client.use_real_client
+OpenStax::Exchange::Client.use_fake_client
+```
+
+```rb
+OpenStax::Exchange::FakeClient.configure do |config|
+  # .. set fake client options ...
+end
 
 And then execute:
 
@@ -18,13 +38,9 @@ Or install it yourself as:
 
     $ gem install exchange-client
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/exchange-client/fork )
+1. Fork it ( https://github.com/[my-github-username]/exchange-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
