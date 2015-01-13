@@ -1,0 +1,195 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://123:abc@localhost:3003/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"1db1bd051b10759d8e082f9c4d97f1a2"
+      X-Request-Id:
+      - b7c271cf-e691-408f-a891-601ae080a091
+      X-Runtime:
+      - '0.032509'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"223e1079d9fc17c0a6c72d3b203a8685fe81e6bb2e5afa242570c1f7d14d58a4","token_type":"bearer"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
+- request:
+    method: post
+    uri: http://localhost:3003/api/identifiers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - application/vnd.exchange.openstax.v1
+      Authorization:
+      - Bearer 223e1079d9fc17c0a6c72d3b203a8685fe81e6bb2e5afa242570c1f7d14d58a4
+      Content-Length:
+      - '0'
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"7c513075a0628876caf5244e0aa179c9"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _exercises_session=M0Q2Mzc1YkNpdHpKQ2h6cWVEUTR4SXFIUXdNbjR6cS9aSzBORmJkWVc4U1FHK0U3VWQ3bkhKemxJNU1jdXI0ZGNCQzNicU5zYU9acWVJZ2pHUWlwRFE9PS0tQTVPcTAxVkRaVVhQSlRBVEpDTVoyUT09--39d88c2341b105f2c8d188d7da12aeb44d835072;
+        path=/; HttpOnly
+      - request_method=POST; path=/
+      X-Request-Id:
+      - db3af164-fc15-49b2-8dee-212b50963600
+      X-Runtime:
+      - '0.052918'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"identifier":"a77551fb068480c38afd1dd8d8fb8e3eac943992a6769d404786e863e00720c4"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
+- request:
+    method: post
+    uri: http://localhost:3003/api/events/platforms/multiple_choices
+    body:
+      encoding: UTF-8
+      string: ! '{"identifier":"a77551fb068480c38afd1dd8d8fb8e3eac943992a6769d404786e863e00720c4","resource":"http://exercises.openstax.org/exercises/1234","trial":"1","answer":"answer_string"}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - application/vnd.exchange.openstax.v1
+      Authorization:
+      - Bearer 223e1079d9fc17c0a6c72d3b203a8685fe81e6bb2e5afa242570c1f7d14d58a4
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"af5fad75935bb550a629ec0c635ad608"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _exercises_session=WWZqcUdHS3ErZGRsc3F5NjZTWmQyZGx0OXJaTWRXQm1JaXE2c1ZWZEVZQno2TG5QQk16TVY3SS92TEo4T09rZFNsU29uMWRuRHA0eWF2cFhwS0NFdnc9PS0tbzJObitQNGx5czJBRlZoK1JmcThxZz09--3f3618e97901ffdc7bf941e0a4ee3b2d1a27b20e;
+        path=/; HttpOnly
+      - request_method=POST; path=/
+      X-Request-Id:
+      - 8fc95cac-5d8b-43b5-ba35-4de0b2342503
+      X-Runtime:
+      - '0.073550'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"identifier":"a77551fb068480c38afd1dd8d8fb8e3eac943992a6769d404786e863e00720c4","resource":"http://exercises.openstax.org/exercises/1234","trial":"1","created_at":"2015-01-12T21:08:52.988Z","answer_type":"multiple-choice","answer":"answer_string"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:53 GMT
+- request:
+    method: post
+    uri: http://localhost:3003/api/events/platforms/multiple_choices
+    body:
+      encoding: UTF-8
+      string: ! '{"identifier":"a77551fb068480c38afd1dd8d8fb8e3eac943992a6769d404786e863e00720c4","resource":"http://exercises.openstax.org/exercises/3456","trial":"1","answer":"answer_string"}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - application/vnd.exchange.openstax.v1
+      Authorization:
+      - Bearer 223e1079d9fc17c0a6c72d3b203a8685fe81e6bb2e5afa242570c1f7d14d58a4
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"43d957a9436ca80c3a80f25ee5ebd56d"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _exercises_session=WXZhTXZ0Vnpxb3VEVHVlcEltaWJSQVQvWGFjVmFvRW9hZGhCQkVyNXJTblE3MVkyZmIxcUFpdSt4V3Mvei9KbHNOT2g4Q2NraEh0czNDdmRhNkdUVHc9PS0tbDFWT3pqdU84U0NLOG1nb1ZoY3VoZz09--b13cdee89189697d1755394ee5bdddd8d19e7f11;
+        path=/; HttpOnly
+      - request_method=POST; path=/
+      X-Request-Id:
+      - 82239e96-36ba-4908-8c11-ed84ec764e8e
+      X-Runtime:
+      - '0.082626'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"identifier":"a77551fb068480c38afd1dd8d8fb8e3eac943992a6769d404786e863e00720c4","resource":"http://exercises.openstax.org/exercises/3456","trial":"1","created_at":"2015-01-12T21:08:53.073Z","answer_type":"multiple-choice","answer":"answer_string"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:53 GMT
+recorded_with: VCR 2.9.3

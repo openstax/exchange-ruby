@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://123:abc@localhost:3003/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"f04b2cfc92d51ad3cc0806eeea34ae39"
+      X-Request-Id:
+      - 0ade458e-d6b6-47ff-88af-36a192d55ed4
+      X-Runtime:
+      - '0.029061'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"bcf348f1e3d1b3422422671a2c940d59351bad44b3b95ed3b2296c16f57675a2","token_type":"bearer"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
+- request:
+    method: post
+    uri: http://localhost:3003/api/identifiers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - application/vnd.exchange.openstax.v1
+      Authorization:
+      - Bearer bcf348f1e3d1b3422422671a2c940d59351bad44b3b95ed3b2296c16f57675a2
+      Content-Length:
+      - '0'
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"0ca26961ce9d51f60f5a467cfe7ba4c2"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _exercises_session=TnZoWHNTaWdjZmJJUXg2VHdOdERvcTA5a2R6WURqQkJub1FMYlZYdEpKZ3hCQjJiekx2ZVdDL2ZBcWMwOW53Y3lFVHYzWHJYTFlhdW02MUVKMXdZY2c9PS0tQ1VnN1EzSmxad1BjY1d5UVNHR29xdz09--e0ce290be622c8641bdc4072f45e8f23b596a233;
+        path=/; HttpOnly
+      - request_method=POST; path=/
+      X-Request-Id:
+      - 15464bd1-b133-4c40-9e36-17a4b3a43ebc
+      X-Runtime:
+      - '0.047932'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"identifier":"e4b89fa467a1f56272ab3d4440cd784b9a8eaa377f55997c74a452c3e084bf69"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
+recorded_with: VCR 2.9.3

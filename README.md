@@ -10,35 +10,63 @@ A ruby client for interfacing with the OpenStax Exchange API.
 Usage
 -----
 
-Add the engine to your Gemfile and then run `bundle install`.
+Include the gem in your project:
+```rb
+gem 'openstax_exchange'
+```
 
-Create an `openstax_exchange.rb` initializer in `config/initializers`,
-with at least the following contents:
+Include the following in your script:
+
+```rb
+require 'openstax_exchange'
+```
+
+Configure the client's knowledge of the Exchange server:
 
 ```rb
 OpenStax::Exchange.configure do |config|
-  config.openstax_exchange_platform_id = 'value_from_openstax_exchange_here'
-  config.openstax_exchange_platform_secret = 'value_from_openstax_exchange_here'
+  config.client_platform_id     = '123'
+  config.client_platform_secret = 'abc' ## do not check real secrets into version control!
+  config.client_server_url      = 'http://www.example.com:3000/base/path'
+  config.client_api_version     = 'v1'
 end
 ```
 
-If you're running the OpenStax Exchange server in a dev instance on your
-machine, you can specify that instance's local URL with:
+By default the real Exchange client will be used.  However, the choice can be made explicitly by using the following:
 
 ```rb
-config.openstax_exchange_url = 'http://localhost:3003/'
+OpenStax::Exchange.use_real_client
+OpenStax::Exchange.use_fake_client
 ```
 
-Exchange API
-------------
+If using the fake client, configure the faked server settings:
 
-Exchange-ruby provides convenience methods for accessing
-the OpenStax Exchange API.
+```rb
+OpenStax::Exchange::FakeClient.configure do |config|
+  config.registered_platforms   = {'123' => 'abc'}
+  config.server_url             = 'http://www.example.com:3000/base/path'
+  config.supported_api_versions = ['v1']
+end
+```
 
-`OpenStax::Exchange.api_call(http_method, url, options = {})` provides a
-convenience method capable of making API calls to Exchange. `http_method` can
-be any valid HTTP method, and `url` is the desired API URL, without the 'api/'
-prefix. Options is a hash that can contain any option that
-OAuth2 requests accept, such as :headers, :params, :body, etc,
-plus the optional values :api_version (to specify an API version) and
-:access_token (to specify an OAuth access token).
+After changing the client configuration, use:
+```rb
+OpenStax::Exchange.reset!
+```
+to ensure that the changes take effect.
+
+The following Exchange API methods are currently supported:
+```rb
+identifier = OpenStax::Exchange.create_identifier
+```
+```rb
+response = OpenStax::Exchange.record_multiple_choice_answer(identifier, resource_uri, trial, answer)
+```
+
+## Contributing
+
+1. Fork it ( https://github.com/[my-github-username]/exchange-ruby/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request

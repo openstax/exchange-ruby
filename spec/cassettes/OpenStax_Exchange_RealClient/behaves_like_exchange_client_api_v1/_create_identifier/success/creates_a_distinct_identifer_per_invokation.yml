@@ -1,0 +1,146 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://123:abc@localhost:3003/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"78a764ea7b6f5c5a842411f5857c9fca"
+      X-Request-Id:
+      - 167f3bf7-4087-4a93-a227-e9402d4f10e1
+      X-Runtime:
+      - '0.014904'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"4b75ee3427beb3b486def357c3d7e6aa97ca948a8bfb7528c0a09913525795d9","token_type":"bearer"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
+- request:
+    method: post
+    uri: http://localhost:3003/api/identifiers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - application/vnd.exchange.openstax.v1
+      Authorization:
+      - Bearer 4b75ee3427beb3b486def357c3d7e6aa97ca948a8bfb7528c0a09913525795d9
+      Content-Length:
+      - '0'
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"827945503ecf81b1c4c910bee932d933"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _exercises_session=c0cyWnNJeUZSUVQ1MVJ6QUdYUjJKakNSbFRweFQwdnovVms3dm42dDRqMFdSSTJwM2dVTU5GelFPNjhSRXdRVkQxYUlNN0Jpek5Nd2RtenlkNUV0VlE9PS0tdkxMWVV4dUgvVFd3YzFTZzJkNUFXQT09--10f51958af22134ccfe27073cd381c0faf434a35;
+        path=/; HttpOnly
+      - request_method=POST; path=/
+      X-Request-Id:
+      - 4911b91c-7fb5-49ec-9f91-0772d50ef84c
+      X-Runtime:
+      - '0.078438'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"identifier":"d8626248d8781ea4a079810bbc2414194335fdab7658b7ba2fab8986b80b7b05"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
+- request:
+    method: post
+    uri: http://localhost:3003/api/identifiers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - application/vnd.exchange.openstax.v1
+      Authorization:
+      - Bearer 4b75ee3427beb3b486def357c3d7e6aa97ca948a8bfb7528c0a09913525795d9
+      Content-Length:
+      - '0'
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"8d46bbfacc4812d2aafea6655fc6ea42"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _exercises_session=LzR6d09ZRE1CUjZlR2Jac1FpMlkzeDl2VWFNYTJyQ1NGeGkxWjRxVHdVS095ckpwUFZMcytxUFByOXVJOHoxUFR1d3ozSzNycFBYYVUrOEY3TVU3eVE9PS0tb29QaldpV2lkaWZEZHlRblZjQVBjdz09--c93e2fa442d933cb679336585b1670ebf60fdb09;
+        path=/; HttpOnly
+      - request_method=POST; path=/
+      X-Request-Id:
+      - dca250e2-9c45-4f64-b584-a0f8f264a3f3
+      X-Runtime:
+      - '0.040383'
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: US-ASCII
+      string: ! '{"identifier":"c2e144cf2fa6db7fe45015b20fe117293a75d8c778204507095e03e8fa60ebf9"}'
+    http_version: 
+  recorded_at: Mon, 12 Jan 2015 21:08:52 GMT
+recorded_with: VCR 2.9.3
