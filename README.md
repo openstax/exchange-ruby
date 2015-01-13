@@ -63,6 +63,16 @@ identifier = OpenStax::Exchange.create_identifier
 response = OpenStax::Exchange.record_multiple_choice_answer(identifier, resource_uri, trial, answer)
 ```
 
+Running the Specs
+-----------------
+
+Create a local clone of the repo, and run the following commands:
+```rb
+bundle install
+bundle exec rake
+```
+The result should be a set of passing specs.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/exchange-ruby/fork )
