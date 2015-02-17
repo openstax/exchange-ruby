@@ -1,5 +1,4 @@
-exchange-ruby
-=============
+# exchange-ruby
 
 [![Gem Version](https://badge.fury.io/rb/openstax_exchange.svg)](http://badge.fury.io/rb/openstax_exchange)
 [![Build Status](https://travis-ci.org/openstax/exchange-ruby.svg?branch=master)](https://travis-ci.org/openstax/exchange-ruby)
@@ -7,8 +6,7 @@ exchange-ruby
 
 A ruby client for interfacing with the OpenStax Exchange API.
 
-Usage
------
+## Usage
 
 Include the gem in your project:
 ```rb
@@ -21,7 +19,30 @@ Include the following in your script:
 require 'openstax_exchange'
 ```
 
-Configure the client's knowledge of the Exchange server:
+### Client Configuration
+
+*NOTE:* After changing the client configuration, use:
+```rb
+OpenStax::Exchange.reset!
+```
+to ensure that the changes take effect.
+
+#### Choosing the Client
+
+Two clients are supported:
+* a real client which connects to an actual Exchange server
+* a fake client which implements a fake of the Exchange server
+
+By default the real Exchange client will be used.  However, the choice can be made explicitly by using the following:
+
+```rb
+OpenStax::Exchange.use_real_client
+OpenStax::Exchange.use_fake_client
+```
+
+#### Configuring the Client
+
+Regardless of which client is used, you must configure the client's knowledge of the Exchange server:
 
 ```rb
 OpenStax::Exchange.configure do |config|
@@ -32,14 +53,9 @@ OpenStax::Exchange.configure do |config|
 end
 ```
 
-By default the real Exchange client will be used.  However, the choice can be made explicitly by using the following:
+#### Configuring the Fake Client
 
-```rb
-OpenStax::Exchange.use_real_client
-OpenStax::Exchange.use_fake_client
-```
-
-If using the fake client, configure the faked server settings:
+The fake client automatically uses the `OpenStax::Exchange.configure` client-side settings, but you must also configure the faked client's server settings:
 
 ```rb
 OpenStax::Exchange::FakeClient.configure do |config|
@@ -49,22 +65,16 @@ OpenStax::Exchange::FakeClient.configure do |config|
 end
 ```
 
-After changing the client configuration, use:
-```rb
-OpenStax::Exchange.reset!
-```
-to ensure that the changes take effect.
+### Supported API Methods
 
 The following Exchange API methods are currently supported:
 ```rb
 identifier = OpenStax::Exchange.create_identifier
-```
-```rb
+
 response = OpenStax::Exchange.record_multiple_choice_answer(identifier, resource_uri, trial, answer)
 ```
 
-Running the Specs
------------------
+## Running the Specs
 
 Create a local clone of the repo, and run the following commands:
 ```rb
