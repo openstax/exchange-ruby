@@ -31,26 +31,30 @@ module OpenStax
       def create_identifier
         options = {}
         add_accept_header! options
+        add_content_type_header! options
 
         response = @oauth_token.request(
           :post,
           "#{@server_url}/api/identifiers",
-          options)
+          options
+        )
 
-        return JSON.parse(response.body)['identifier']
+        return JSON.parse(response.body)
       end
 
       def record_multiple_choice_answer(identifier, resource, trial, answer)
         options = {}
         add_accept_header! options
         add_authorization_header! options
+        add_content_type_header! options
 
         options[:body] = { identifier: identifier, resource: resource, trial: trial, answer: answer }.to_json
 
         response = @oauth_token.request(
           :post,
           "#{@server_url}/api/events/platforms/multiple_choices",
-          options)
+          options
+        )
 
         return JSON.parse(response.body)
       end
@@ -69,6 +73,11 @@ module OpenStax
       def add_authorization_header!(options)
         add_header_hash! options
         options[:headers].merge!({ 'Authorization' => "Bearer #{token}" })
+      end
+
+      def add_content_type_header!(options)
+        add_header_hash! options
+        options[:headers].merge!({ 'Content-Type' => "application/json" })
       end
     end
 

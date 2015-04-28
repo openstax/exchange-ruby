@@ -43,7 +43,10 @@ module OpenStax
       end
 
       def create_identifier
-        SecureRandom.hex(64)
+        {
+          'read' => SecureRandom.hex(64),
+          'write' => SecureRandom.hex(64)
+        }
       end
 
       def record_multiple_choice_answer(identifier, resource, trial, answer)
@@ -51,7 +54,7 @@ module OpenStax
         @multiple_choice_responses[identifier][resource] ||= {}
 
         raise "invalid resource" \
-          unless URI(resource).host == "exercises.openstax.org"
+          unless URI(resource).host == "exercises-dev1.openstax.org"
 
         raise "duplicate response for (identifier,resource,trial) triplet" \
           if @multiple_choice_responses[identifier][resource][trial]
