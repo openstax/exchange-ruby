@@ -50,16 +50,11 @@ module OpenStax
       end
 
       def record_multiple_choice_answer(identifier, resource, trial, answer)
-        @multiple_choice_responses[identifier] ||= {}
-        @multiple_choice_responses[identifier][resource] ||= {}
+        raise "invalid resource" unless host.ends_with?("openstax.org") || \
+                                        host.ends_with?("localhost")
 
-        raise "invalid resource" \
-          unless URI(resource).host == "exercises-dev1.openstax.org"
-
-        raise "duplicate response for (identifier,resource,trial) triplet" \
-          if @multiple_choice_responses[identifier][resource][trial]
-
-        @multiple_choice_responses[identifier][resource][trial] = answer
+        @multiple_choice_responses[identifier][resource][trial] ||= []
+        @multiple_choice_responses[identifier][resource][trial] << answer
 
         return {
           'identifier' => identifier,
