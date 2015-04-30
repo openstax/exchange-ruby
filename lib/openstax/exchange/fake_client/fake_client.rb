@@ -1,5 +1,6 @@
 require 'securerandom'
 require 'uri'
+require 'hashie'
 
 module OpenStax
   module Exchange
@@ -43,10 +44,10 @@ module OpenStax
       end
 
       def create_identifiers
-        {
+        Hashie::Mash.new(
           'read' => SecureRandom.hex(64),
           'write' => SecureRandom.hex(64)
-        }
+        )
       end
 
       def record_multiple_choice_answer(identifier, resource, trial, answer)

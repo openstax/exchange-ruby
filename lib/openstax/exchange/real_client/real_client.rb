@@ -1,4 +1,5 @@
 require 'oauth2'
+require 'hashie'
 
 module OpenStax
   module Exchange
@@ -39,7 +40,7 @@ module OpenStax
           options
         )
 
-        return JSON.parse(response.body)
+        return Hashie::Mash.new(JSON.parse(response.body))
       end
 
       def record_multiple_choice_answer(identifier, resource, trial, answer)
