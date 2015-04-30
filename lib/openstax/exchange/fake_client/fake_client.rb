@@ -42,7 +42,7 @@ module OpenStax
         @token
       end
 
-      def create_identifier
+      def create_identifiers
         {
           'read' => SecureRandom.hex(64),
           'write' => SecureRandom.hex(64)
@@ -50,9 +50,11 @@ module OpenStax
       end
 
       def record_multiple_choice_answer(identifier, resource, trial, answer)
-        raise "invalid resource" unless host.ends_with?("openstax.org") || \
-                                        host.ends_with?("localhost")
+        host = URI(resource).host
+        raise "invalid resource" unless host =~ /openstax\.org\z|localhost\z/
 
+        @multiple_choice_responses[identifier] ||= {}
+        @multiple_choice_responses[identifier][resource] ||= {}
         @multiple_choice_responses[identifier][resource][trial] ||= []
         @multiple_choice_responses[identifier][resource][trial] << answer
 

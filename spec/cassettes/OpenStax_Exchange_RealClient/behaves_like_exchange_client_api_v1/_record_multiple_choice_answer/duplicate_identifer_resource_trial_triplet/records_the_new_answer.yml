@@ -4,17 +4,15 @@ http_interactions:
     method: post
     uri: http://123:abc@localhost:3003/oauth/token
     body:
-      encoding: UTF-8
+      encoding: US-ASCII
       string: grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v0.9.1
       Content-Type:
       - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
   response:
     status:
       code: 200
@@ -33,26 +31,26 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"8ee4d60ad533ccb835e9d401ebee4605"
+      - W/"e3d0e550ef1d47dc2d40b7d70e16eecf"
       X-Request-Id:
-      - 4aebcd79-1f80-4ceb-9f71-f2038da6bf98
+      - fa9d9559-e16e-4318-b447-c24b8cc531b1
       X-Runtime:
-      - '0.018967'
+      - '0.066830'
       Connection:
       - close
       Server:
       - thin
     body:
-      encoding: UTF-8
-      string: '{"access_token":"2f326d90571414317d10110ab4a6037b2508f263b9f1b52e901ffeea3a9c6c12","token_type":"bearer","scope":"read
-        write","created_at":1430246610}'
+      encoding: US-ASCII
+      string: ! '{"access_token":"177f3b0e42f693caee3761c653a0060104dea5afcc9cbad292e64b563c6e5296","token_type":"bearer","scope":"read
+        write","created_at":1430418522}'
     http_version: 
-  recorded_at: Tue, 28 Apr 2015 18:43:30 GMT
+  recorded_at: Thu, 30 Apr 2015 18:28:42 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/identifiers
     body:
-      encoding: UTF-8
+      encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
@@ -62,11 +60,9 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 2f326d90571414317d10110ab4a6037b2508f263b9f1b52e901ffeea3a9c6c12
+      - Bearer 177f3b0e42f693caee3761c653a0060104dea5afcc9cbad292e64b563c6e5296
       Content-Length:
       - '0'
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
       code: 201
@@ -79,45 +75,43 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 28 Apr 2015 18:43:30 GMT
+      - Thu, 30 Apr 2015 18:28:42 GMT
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"8e292eafbd3dafff2b2b0f13bf3de98f"
+      - W/"6d084a5cad37e1c244bdb5c111ab968a"
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
       - request_method=POST; path=/
       X-Request-Id:
-      - 199996cf-aa4c-45b3-ad23-0137071fad54
+      - 05ef7ac8-aa39-40f5-8a95-d769dfc28170
       X-Runtime:
-      - '0.058020'
+      - '0.169319'
       Connection:
       - close
       Server:
       - thin
     body:
-      encoding: UTF-8
-      string: '{"read":"898cb759172cc8b7a33a1ca1b0d39785c79ae133d1eb176c97540cc9d7f5bc9e","write":"be8448d3b52f45b5e11b3c5de2990ef905457a3f02be6a5d872aa5c09875ec50"}'
+      encoding: US-ASCII
+      string: ! '{"read":"9dc1b20bb40a6e3f40a33405a0089ffb6fdd3b34f338eda3595da8a0df88d512","write":"2a3c4952254d5cd231df4971af97f71337c714085d30237020dba34b073fa1fa"}'
     http_version: 
-  recorded_at: Tue, 28 Apr 2015 18:43:30 GMT
+  recorded_at: Thu, 30 Apr 2015 18:28:42 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/events/platforms/multiple_choices
     body:
       encoding: UTF-8
-      string: '{"identifier":"be8448d3b52f45b5e11b3c5de2990ef905457a3f02be6a5d872aa5c09875ec50","resource":"https://exercises-dev1.openstax.org/api/exercises/123@1","trial":"1","answer":"answer_string"}'
+      string: ! '{"identifier":"2a3c4952254d5cd231df4971af97f71337c714085d30237020dba34b073fa1fa","resource":"https://exercises-dev1.openstax.org/api/exercises/123@1","trial":"1","answer":"answer_string"}'
     headers:
       User-Agent:
       - Faraday v0.9.1
       Accept:
       - application/vnd.exchange.openstax.v1
       Authorization:
-      - Bearer 2f326d90571414317d10110ab4a6037b2508f263b9f1b52e901ffeea3a9c6c12
+      - Bearer 177f3b0e42f693caee3761c653a0060104dea5afcc9cbad292e64b563c6e5296
       Content-Type:
       - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
       code: 201
@@ -130,49 +124,47 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 28 Apr 2015 18:43:30 GMT
+      - Thu, 30 Apr 2015 18:28:43 GMT
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"dca23decc9df11e2c5ab099c07bb6786"
+      - W/"af86414af7354a54579425ee3702b3ef"
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
       - request_method=POST; path=/
       X-Request-Id:
-      - 76a1d9bc-738b-4039-b7bc-8c7009c27b2d
+      - 9cff5834-d1f1-4b2e-bf04-c8614e857f5f
       X-Runtime:
-      - '0.074900'
+      - '0.274154'
       Connection:
       - close
       Server:
       - thin
     body:
-      encoding: UTF-8
-      string: '{"identifier":"be8448d3b52f45b5e11b3c5de2990ef905457a3f02be6a5d872aa5c09875ec50","resource":"https://exercises-dev1.openstax.org/api/exercises/123@1","trial":"1","created_at":"2015-04-28T18:43:30.472Z","answer_type":"multiple-choice","answer":"answer_string"}'
+      encoding: US-ASCII
+      string: ! '{"identifier":"2a3c4952254d5cd231df4971af97f71337c714085d30237020dba34b073fa1fa","resource":"https://exercises-dev1.openstax.org/api/exercises/123@1","trial":"1","created_at":"2015-04-30T18:28:43.123Z","answer_type":"multiple-choice","answer":"answer_string"}'
     http_version: 
-  recorded_at: Tue, 28 Apr 2015 18:43:30 GMT
+  recorded_at: Thu, 30 Apr 2015 18:28:43 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/events/platforms/multiple_choices
     body:
       encoding: UTF-8
-      string: '{"identifier":"be8448d3b52f45b5e11b3c5de2990ef905457a3f02be6a5d872aa5c09875ec50","resource":"https://exercises-dev1.openstax.org/api/exercises/123@1","trial":"1","answer":"answer_string"}'
+      string: ! '{"identifier":"2a3c4952254d5cd231df4971af97f71337c714085d30237020dba34b073fa1fa","resource":"https://exercises-dev1.openstax.org/api/exercises/123@1","trial":"1","answer":"another_string"}'
     headers:
       User-Agent:
       - Faraday v0.9.1
       Accept:
       - application/vnd.exchange.openstax.v1
       Authorization:
-      - Bearer 2f326d90571414317d10110ab4a6037b2508f263b9f1b52e901ffeea3a9c6c12
+      - Bearer 177f3b0e42f693caee3761c653a0060104dea5afcc9cbad292e64b563c6e5296
       Content-Type:
       - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
-      code: 422
-      message: Unprocessable Entity
+      code: 201
+      message: Created
     headers:
       X-Frame-Options:
       - SAMEORIGIN
@@ -181,25 +173,26 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 28 Apr 2015 18:43:30 GMT
+      - Thu, 30 Apr 2015 18:28:43 GMT
       Content-Type:
       - application/json; charset=utf-8
+      Etag:
+      - W/"7d5dc201a376c1a0764d6fa9252738af"
       Cache-Control:
-      - no-cache
+      - max-age=0, private, must-revalidate
       Set-Cookie:
       - request_method=POST; path=/
       X-Request-Id:
-      - 4c4349b0-d737-4f67-a2ab-2ff39a93cd2f
+      - 42174994-50fc-46a3-a04b-302385f05e80
       X-Runtime:
-      - '0.033672'
+      - '0.075426'
       Connection:
       - close
       Server:
       - thin
     body:
-      encoding: UTF-8
-      string: '[{"code":"taken","data":{"model":{"id":null,"task_id":24,"answer_type":"multiple-choice","answer":"answer_string","created_at":null,"updated_at":null},"attribute":"answer_type"},"kind":"activerecord","message":"has
-        already been taken","offending_inputs":["event","answer_type"]}]'
+      encoding: US-ASCII
+      string: ! '{"identifier":"2a3c4952254d5cd231df4971af97f71337c714085d30237020dba34b073fa1fa","resource":"https://exercises-dev1.openstax.org/api/exercises/123@1","trial":"1","created_at":"2015-04-30T18:28:43.276Z","answer_type":"multiple-choice","answer":"another_string"}'
     http_version: 
-  recorded_at: Tue, 28 Apr 2015 18:43:30 GMT
+  recorded_at: Thu, 30 Apr 2015 18:28:43 GMT
 recorded_with: VCR 2.9.3

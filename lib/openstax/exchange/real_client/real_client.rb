@@ -28,7 +28,7 @@ module OpenStax
         @oauth_token.token
       end
 
-      def create_identifier
+      def create_identifiers
         options = {}
         add_accept_header! options
         add_content_type_header! options
