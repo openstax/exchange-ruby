@@ -1,5 +1,6 @@
 require 'securerandom'
 require 'uri'
+require 'hashie'
 
 module OpenStax
   module Exchange
@@ -42,21 +43,21 @@ module OpenStax
         @token
       end
 
-      def create_identifier
-        SecureRandom.hex(64)
+      def create_identifiers
+        Hashie::Mash.new(
+          'read' => SecureRandom.hex(64),
+          'write' => SecureRandom.hex(64)
+        )
       end
 
       def record_multiple_choice_answer(identifier, resource, trial, answer)
+        host = URI(resource).host
+        raise "invalid resource" unless host =~ /openstax\.org\z|localhost\z/
+
         @multiple_choice_responses[identifier] ||= {}
         @multiple_choice_responses[identifier][resource] ||= {}
-
-        raise "invalid resource" \
-          unless URI(resource).host == "exercises.openstax.org"
-
-        raise "duplicate response for (identifier,resource,trial) triplet" \
-          if @multiple_choice_responses[identifier][resource][trial]
-
-        @multiple_choice_responses[identifier][resource][trial] = answer
+        @multiple_choice_responses[identifier][resource][trial] ||= []
+        @multiple_choice_responses[identifier][resource][trial] << answer
 
         return {
           'identifier' => identifier,

@@ -27,11 +27,11 @@ module OpenStax
       !!@use_real_client
     end
 
-    def self.create_identifier
+    def self.create_identifiers
       begin
-        client.create_identifier
+        client.create_identifiers
       rescue StandardError => error
-        raise ClientError.new("create_identifier failure", error)
+        raise ClientError.new("create_identifiers failure", error)
       end
     end
 

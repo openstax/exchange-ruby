@@ -61,16 +61,29 @@ RSpec.shared_examples "exchange client api v1" do
     end
   end
 
-  describe "#create_identifier" do
+  describe "#create_identifiers" do
     context "success" do
       it "creates and returns a new identifier" do
-        identifier = OpenStax::Exchange.create_identifier
-        expect(identifier).to match(/^[a-fA-F0-9]+$/)
+        response = OpenStax::Exchange.create_identifiers
+        read_identifier = response.read
+        write_identifier = response.write
+        expect(read_identifier).to match(/^[a-fA-F0-9]+$/)
+        expect(write_identifier).to match(/^[a-fA-F0-9]+$/)
       end
-      it "creates a distinct identifer per invokation" do
-        identifier1 = OpenStax::Exchange.create_identifier
-        identifier2 = OpenStax::Exchange.create_identifier
+
+      it "creates distinct identifiers per invokation" do
+        response1 = OpenStax::Exchange.create_identifiers
+        response2 = OpenStax::Exchange.create_identifiers
+        identifier1 = response1.read
+        identifier2 = response1.write
+        identifier3 = response2.read
+        identifier4 = response2.write
         expect(identifier1).to_not eq(identifier2)
+        expect(identifier1).to_not eq(identifier3)
+        expect(identifier1).to_not eq(identifier4)
+        expect(identifier2).to_not eq(identifier3)
+        expect(identifier2).to_not eq(identifier4)
+        expect(identifier3).to_not eq(identifier4)
       end
     end
   end
@@ -78,11 +91,11 @@ RSpec.shared_examples "exchange client api v1" do
   describe "#record_multiple_choice_answer" do
     context "success" do
       it "creates a multiple choice answer associated with the given identifier" do
-        identifier = OpenStax::Exchange.create_identifier
+        identifier = OpenStax::Exchange.create_identifiers.write
 
         # must have the form of a "trusted resource"
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
-        resource_string = 'http://exercises.openstax.org/exercises/1234'
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial           = '1'
         answer_string   = 'answer_string'
 
@@ -95,12 +108,12 @@ RSpec.shared_examples "exchange client api v1" do
         expect(response['answer']).to eq(answer_string)
       end
       it "allows answers with distinct identifiers to be saved" do
-        identifier1 = OpenStax::Exchange.create_identifier
-        identifier2 = OpenStax::Exchange.create_identifier
+        identifier1 = OpenStax::Exchange.create_identifiers.write
+        identifier2 = OpenStax::Exchange.create_identifiers.write
 
         # must have the form of a "trusted resource"
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
-        resource_string = 'http://exercises.openstax.org/exercises/1234'
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial           = '1'
         answer_string   = 'answer_string'
 
@@ -119,12 +132,12 @@ RSpec.shared_examples "exchange client api v1" do
         expect(response['identifier']).to eq(identifier2)
       end
       it "allows answers with distinct resources to be saved" do
-        identifier = OpenStax::Exchange.create_identifier
+        identifier = OpenStax::Exchange.create_identifiers.write
 
         # must have the form of a "trusted resource"
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
-        resource_string1 = 'http://exercises.openstax.org/exercises/1234'
-        resource_string2 = 'http://exercises.openstax.org/exercises/3456'
+        resource_string1 = 'https://exercises-dev1.openstax.org/api/exercises/12@1'
+        resource_string2 = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial            = '1'
         answer_string    = 'answer_string'
 
@@ -143,11 +156,11 @@ RSpec.shared_examples "exchange client api v1" do
         expect(response['resource']).to eq(resource_string2)
       end
       it "allows answers with distinct trials to be saved" do
-        identifier = OpenStax::Exchange.create_identifier
+        identifier = OpenStax::Exchange.create_identifiers.write
 
         # must have the form of a "trusted resource"
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
-        resource_string = 'http://exercises.openstax.org/exercises/1234'
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial1          = '1'
         trial2          = '2'
         answer_string   = 'answer_string'
@@ -168,33 +181,36 @@ RSpec.shared_examples "exchange client api v1" do
       end
     end
     context "duplicate (identifer,resource,trial) triplet" do
-      it "raises an exception" do
-        identifier = OpenStax::Exchange.create_identifier
+      it "records the new answer" do
+        identifier = OpenStax::Exchange.create_identifiers.write
 
         # must have the form of a "trusted resource"
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
-        resource_string = 'http://exercises.openstax.org/exercises/1234'
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial           = '1'
         answer_string   = 'answer_string'
+        answer_string_2 = 'another_string'
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier, resource_string, trial, answer_string)
+            identifier, resource_string, trial, answer_string
+          )
         }.to_not raise_error
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier, resource_string, trial, answer_string)
-        }.to raise_error(OpenStax::Exchange::ClientError)
+            identifier, resource_string, trial, answer_string_2
+          )
+        }.to_not raise_error
       end
     end
     context "invalid resource string" do
       it "raises an exception" do
-        identifier = OpenStax::Exchange.create_identifier
+        identifier = OpenStax::Exchange.create_identifiers.write
 
         # must have the form of a "trusted resource"
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
-        resource_string = 'http://example.com/exercises/1234'
+        resource_string = 'https://example.com/api/exercises/123@1'
         trial           = '1'
         answer_string   = 'answer_string'
 
