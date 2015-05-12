@@ -43,6 +43,14 @@ module OpenStax
       end
     end
 
+    def self.record_grade(*args)
+      begin
+        client.record_grade(*args)
+      rescue StandardError => error
+        raise ClientError.new("record_grade failure", error)
+      end
+    end
+
     private
 
     def self.client

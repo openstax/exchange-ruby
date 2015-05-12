@@ -60,6 +60,24 @@ module OpenStax
         return JSON.parse(response.body)
       end
 
+      def record_grade(identifier, resource, trial, grade, grader)
+        options = {}
+        add_accept_header! options
+        add_authorization_header! options
+        add_content_type_header! options
+
+        options[:body] = { identifier: identifier, resource: resource,
+                           trial: trial, grade: grade, grader: grader }.to_json
+
+        response = @oauth_token.request(
+          :post,
+          "#{@server_url}/api/events/platforms/gradings",
+          options
+        )
+
+        return JSON.parse(response.body)
+      end
+
       private
 
       def add_header_hash!(options)

@@ -18,6 +18,10 @@ module OpenStax
         raise NotImplementedError
       end
 
+      def record_grade(identifier, resource, trial, grade)
+        raise NotImplementedError
+      end
+
     end
   end
 end

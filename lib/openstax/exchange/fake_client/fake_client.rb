@@ -33,6 +33,7 @@ module OpenStax
 
         @token = SecureRandom.hex(64)
         @multiple_choice_responses = {}
+        @grades = {}
       end
 
       def is_real_client?
@@ -64,6 +65,24 @@ module OpenStax
           'resource'   => resource,
           'trial'      => trial,
           'answer'     => answer
+        }
+      end
+
+      def record_grade(identifier, resource, trial, grade, grader)
+        host = URI(resource).host
+        raise "invalid resource" unless host =~ /openstax\.org\z|localhost\z/
+
+        @grades[identifier] ||= {}
+        @grades[identifier][resource] ||= {}
+        @grades[identifier][resource][trial] ||= []
+        @grades[identifier][resource][trial] << {grade: grade, grader: grader}
+
+        return {
+          'identifier' => identifier,
+          'resource'   => resource,
+          'trial'      => trial,
+          'grade'      => grade,
+          'grader'     => grader
         }
       end
     end
