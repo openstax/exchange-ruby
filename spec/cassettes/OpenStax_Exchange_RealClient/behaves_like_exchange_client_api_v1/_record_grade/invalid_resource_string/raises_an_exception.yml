@@ -31,21 +31,21 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"671e0a562337a825aa19d4a1e8b75206"
+      - W/"b667674ab8f17ea292c252ed62acf673"
       X-Request-Id:
-      - 0c7e053f-e805-4c4a-9bf3-a1478d4f00ce
+      - ce1d8659-c6f6-4e31-b90c-e39e1cf84fff
       X-Runtime:
-      - '0.016269'
+      - '0.016185'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"access_token":"c0ca319e2588f9f74b8b14c960fd5f4e157a6edf060c36d764a390e082f7f131","token_type":"bearer","scope":"read
-        write","created_at":1431390182}'
+      string: ! '{"access_token":"47fda39d1b5592e9d1c2a58682a26a2dcade0b8a7a9e6d3d800944d08ad1ebec","token_type":"bearer","scope":"read
+        write","created_at":1431459538}'
     http_version: 
-  recorded_at: Tue, 12 May 2015 00:23:02 GMT
+  recorded_at: Tue, 12 May 2015 19:38:58 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/identifiers
@@ -60,7 +60,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer c0ca319e2588f9f74b8b14c960fd5f4e157a6edf060c36d764a390e082f7f131
+      - Bearer 47fda39d1b5592e9d1c2a58682a26a2dcade0b8a7a9e6d3d800944d08ad1ebec
       Content-Length:
       - '0'
   response:
@@ -75,41 +75,41 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 12 May 2015 00:23:02 GMT
+      - Tue, 12 May 2015 19:38:58 GMT
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"8e5c3fe6bde08de633da0d6153d8d0cc"
+      - W/"756a833b2f264f2fa7f424c228380628"
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
       - request_method=POST; path=/
       X-Request-Id:
-      - 64d5effc-e4a5-4180-a31f-38e3ddff9f8b
+      - 464ac99d-1dcd-4e49-ba09-be14001f256e
       X-Runtime:
-      - '0.063133'
+      - '0.077354'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '{"read":"383cc2fee618697bf70d7cec3298b05733bb007ce9f18032de065b90709c26d4","write":"e26218f6aa93129c2b4fc84b2548264e3256308d53164212b3d0285b40575843"}'
+      string: ! '{"read":"0533432f0cf27843a1d76173afca3cf1d948534f2b78f797f36ddf4da8a223ea","write":"ec5a520c954e5ffec7418887c423e385a19782142d574202b200c9392342dea2"}'
     http_version: 
-  recorded_at: Tue, 12 May 2015 00:23:02 GMT
+  recorded_at: Tue, 12 May 2015 19:38:58 GMT
 - request:
     method: post
     uri: http://localhost:3003/api/events/platforms/gradings
     body:
       encoding: UTF-8
-      string: ! '{"identifier":"e26218f6aa93129c2b4fc84b2548264e3256308d53164212b3d0285b40575843","resource":"https://example.com/api/exercises/123@1","trial":"1","grade":"1.0","grader":"openstax"}'
+      string: ! '{"identifier":"ec5a520c954e5ffec7418887c423e385a19782142d574202b200c9392342dea2","resource":"https://example.com/api/exercises/123@1","trial":"1","grade":1.0,"grader":"openstax"}'
     headers:
       User-Agent:
       - Faraday v0.9.1
       Accept:
       - application/vnd.exchange.openstax.v1
       Authorization:
-      - Bearer c0ca319e2588f9f74b8b14c960fd5f4e157a6edf060c36d764a390e082f7f131
+      - Bearer 47fda39d1b5592e9d1c2a58682a26a2dcade0b8a7a9e6d3d800944d08ad1ebec
       Content-Type:
       - application/json
   response:
@@ -124,7 +124,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 12 May 2015 00:23:02 GMT
+      - Tue, 12 May 2015 19:38:58 GMT
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
@@ -132,17 +132,17 @@ http_interactions:
       Set-Cookie:
       - request_method=POST; path=/
       X-Request-Id:
-      - 09a3a36a-5172-46fe-aca0-115a7077df12
+      - e55de558-1fbe-4613-afe6-6f0857be713c
       X-Runtime:
-      - '0.039371'
+      - '0.035829'
       Connection:
       - close
       Server:
       - thin
     body:
       encoding: US-ASCII
-      string: ! '[{"code":"blank","data":{"model":{"id":null,"identifier_id":15,"resource_id":null,"trial":"1","due_at":null,"created_at":null,"updated_at":null},"attribute":"resource"},"kind":"activerecord","message":"can''t
+      string: ! '[{"code":"blank","data":{"model":{"id":null,"identifier_id":7,"resource_id":null,"trial":"1","due_at":null,"created_at":null,"updated_at":null},"attribute":"resource"},"kind":"activerecord","message":"can''t
         be blank","offending_inputs":"resource"}]'
     http_version: 
-  recorded_at: Tue, 12 May 2015 00:23:02 GMT
+  recorded_at: Tue, 12 May 2015 19:38:58 GMT
 recorded_with: VCR 2.9.3

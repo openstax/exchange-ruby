@@ -244,17 +244,17 @@ RSpec.shared_examples "exchange client api v1" do
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
         resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial           = '1'
-        grade_string    = '1.0'
+        grade           = 1.0
         grader_string   = 'openstax'
 
         response = OpenStax::Exchange.record_grade(
-          identifier, resource_string, trial, grade_string, grader_string
+          identifier, resource_string, trial, grade, grader_string
         )
 
         expect(response['identifier']).to eq(identifier)
         expect(response['resource']).to eq(resource_string)
         expect(response['trial']).to eq(trial)
-        expect(response['grade']).to eq(grade_string)
+        expect(response['grade']).to eq(grade)
         expect(response['grader']).to eq(grader_string)
       end
       it "allows grades for distinct identifiers to be saved" do
@@ -265,21 +265,21 @@ RSpec.shared_examples "exchange client api v1" do
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
         resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial           = '1'
-        grade_string    = '1.0'
+        grade           = 1.0
         grader_string   = 'openstax'
 
         response = nil
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier1, resource_string, trial, grade_string, grader_string
+            identifier1, resource_string, trial, grade, grader_string
           )
         }.to_not raise_error
         expect(response['identifier']).to eq(identifier1)
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier2, resource_string, trial, grade_string, grader_string
+            identifier2, resource_string, trial, grade, grader_string
           )
         }.to_not raise_error
         expect(response['identifier']).to eq(identifier2)
@@ -292,21 +292,21 @@ RSpec.shared_examples "exchange client api v1" do
         resource_string1 = 'https://exercises-dev1.openstax.org/api/exercises/12@1'
         resource_string2 = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial            = '1'
-        grade_string     = '1.0'
+        grade            = 1.0
         grader_string    = 'openstax'
 
         response = nil
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier, resource_string1, trial, grade_string, grader_string
+            identifier, resource_string1, trial, grade, grader_string
           )
         }.to_not raise_error
         expect(response['resource']).to eq(resource_string1)
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier, resource_string2, trial, grade_string, grader_string
+            identifier, resource_string2, trial, grade, grader_string
           )
         }.to_not raise_error
         expect(response['resource']).to eq(resource_string2)
@@ -319,21 +319,21 @@ RSpec.shared_examples "exchange client api v1" do
         resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial1          = '1'
         trial2          = '2'
-        grade_string    = '1.0'
+        grade           = 1.0
         grader_string   = 'openstax'
 
         response = nil
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier, resource_string, trial1, grade_string, grader_string
+            identifier, resource_string, trial1, grade, grader_string
           )
         }.to_not raise_error
         expect(response['trial']).to eq(trial1)
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier, resource_string, trial2, grade_string, grader_string
+            identifier, resource_string, trial2, grade, grader_string
           )
         }.to_not raise_error
         expect(response['trial']).to eq(trial2)
@@ -347,28 +347,28 @@ RSpec.shared_examples "exchange client api v1" do
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
         resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
         trial           = '1'
-        grade_string    = '0.0'
-        grade_string_2  = '1.0'
+        grade           = 0.0
+        grade_2         = 1.0
         grader_string   = 'openstax'
         grader_string_2 = 'tutor'
 
         response = nil
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier, resource_string, trial, grade_string, grader_string
+            identifier, resource_string, trial, grade, grader_string
           )
         }.to_not raise_error
 
-        expect(response['grade']).to eq grade_string
+        expect(response['grade']).to eq grade
         expect(response['grader']).to eq grader_string
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier, resource_string, trial, grade_string_2, grader_string_2
+            identifier, resource_string, trial, grade_2, grader_string_2
           )
         }.to_not raise_error
 
-        expect(response['grade']).to eq grade_string_2
+        expect(response['grade']).to eq grade_2
         expect(response['grader']).to eq grader_string_2
       end
     end
@@ -380,12 +380,12 @@ RSpec.shared_examples "exchange client api v1" do
         # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
         resource_string = 'https://example.com/api/exercises/123@1'
         trial           = '1'
-        grade_string    = '1.0'
+        grade           = 1.0
         grader_string   = 'openstax'
 
         expect {
           response = OpenStax::Exchange.record_grade(
-            identifier, resource_string, trial, grade_string, grader_string
+            identifier, resource_string, trial, grade, grader_string
           )
         }.to raise_error(OpenStax::Exchange::ClientError)
       end
