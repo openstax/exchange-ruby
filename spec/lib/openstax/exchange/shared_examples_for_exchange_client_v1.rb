@@ -100,7 +100,8 @@ RSpec.shared_examples "exchange client api v1" do
         answer_string   = 'answer_string'
 
         response = OpenStax::Exchange.record_multiple_choice_answer(
-          identifier, resource_string, trial, answer_string)
+          identifier, resource_string, trial, answer_string
+        )
 
         expect(response['identifier']).to eq(identifier)
         expect(response['resource']).to eq(resource_string)
@@ -121,13 +122,15 @@ RSpec.shared_examples "exchange client api v1" do
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier1, resource_string, trial, answer_string)
+            identifier1, resource_string, trial, answer_string
+          )
         }.to_not raise_error
         expect(response['identifier']).to eq(identifier1)
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier2, resource_string, trial, answer_string)
+            identifier2, resource_string, trial, answer_string
+          )
         }.to_not raise_error
         expect(response['identifier']).to eq(identifier2)
       end
@@ -145,13 +148,15 @@ RSpec.shared_examples "exchange client api v1" do
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier, resource_string1, trial, answer_string)
+            identifier, resource_string1, trial, answer_string
+          )
         }.to_not raise_error
         expect(response['resource']).to eq(resource_string1)
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier, resource_string2, trial, answer_string)
+            identifier, resource_string2, trial, answer_string
+          )
         }.to_not raise_error
         expect(response['resource']).to eq(resource_string2)
       end
@@ -169,13 +174,15 @@ RSpec.shared_examples "exchange client api v1" do
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier, resource_string, trial1, answer_string)
+            identifier, resource_string, trial1, answer_string
+          )
         }.to_not raise_error
         expect(response['trial']).to eq(trial1)
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier, resource_string, trial2, answer_string)
+            identifier, resource_string, trial2, answer_string
+          )
         }.to_not raise_error
         expect(response['trial']).to eq(trial2)
       end
@@ -191,17 +198,22 @@ RSpec.shared_examples "exchange client api v1" do
         answer_string   = 'answer_string'
         answer_string_2 = 'another_string'
 
+        response = nil
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string, trial, answer_string
           )
         }.to_not raise_error
 
+        expect(response['answer']).to eq answer_string
+
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
             identifier, resource_string, trial, answer_string_2
           )
         }.to_not raise_error
+
+        expect(response['answer']).to eq answer_string_2
       end
     end
     context "invalid resource string" do
@@ -216,7 +228,165 @@ RSpec.shared_examples "exchange client api v1" do
 
         expect {
           response = OpenStax::Exchange.record_multiple_choice_answer(
-            identifier, resource_string, trial, answer_string)
+            identifier, resource_string, trial, answer_string
+          )
+        }.to raise_error(OpenStax::Exchange::ClientError)
+      end
+    end
+  end
+
+  describe "#record_grade" do
+    context "success" do
+      it "records the exercise grade for the given identifier" do
+        identifier = OpenStax::Exchange.create_identifiers.write
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
+        trial           = '1'
+        grade_string    = '1.0'
+        grader_string   = 'openstax'
+
+        response = OpenStax::Exchange.record_grade(
+          identifier, resource_string, trial, grade_string, grader_string
+        )
+
+        expect(response['identifier']).to eq(identifier)
+        expect(response['resource']).to eq(resource_string)
+        expect(response['trial']).to eq(trial)
+        expect(response['grade']).to eq(grade_string)
+        expect(response['grader']).to eq(grader_string)
+      end
+      it "allows grades for distinct identifiers to be saved" do
+        identifier1 = OpenStax::Exchange.create_identifiers.write
+        identifier2 = OpenStax::Exchange.create_identifiers.write
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
+        trial           = '1'
+        grade_string    = '1.0'
+        grader_string   = 'openstax'
+
+        response = nil
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier1, resource_string, trial, grade_string, grader_string
+          )
+        }.to_not raise_error
+        expect(response['identifier']).to eq(identifier1)
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier2, resource_string, trial, grade_string, grader_string
+          )
+        }.to_not raise_error
+        expect(response['identifier']).to eq(identifier2)
+      end
+      it "allows grades for distinct resources to be saved" do
+        identifier = OpenStax::Exchange.create_identifiers.write
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string1 = 'https://exercises-dev1.openstax.org/api/exercises/12@1'
+        resource_string2 = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
+        trial            = '1'
+        grade_string     = '1.0'
+        grader_string    = 'openstax'
+
+        response = nil
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string1, trial, grade_string, grader_string
+          )
+        }.to_not raise_error
+        expect(response['resource']).to eq(resource_string1)
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string2, trial, grade_string, grader_string
+          )
+        }.to_not raise_error
+        expect(response['resource']).to eq(resource_string2)
+      end
+      it "allows grades for distinct trials to be saved" do
+        identifier = OpenStax::Exchange.create_identifiers.write
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
+        trial1          = '1'
+        trial2          = '2'
+        grade_string    = '1.0'
+        grader_string   = 'openstax'
+
+        response = nil
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string, trial1, grade_string, grader_string
+          )
+        }.to_not raise_error
+        expect(response['trial']).to eq(trial1)
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string, trial2, grade_string, grader_string
+          )
+        }.to_not raise_error
+        expect(response['trial']).to eq(trial2)
+      end
+    end
+    context "duplicate (identifer,resource,trial) triplet" do
+      it "records the new grade" do
+        identifier = OpenStax::Exchange.create_identifiers.write
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
+        trial           = '1'
+        grade_string    = '0.0'
+        grade_string_2  = '1.0'
+        grader_string   = 'openstax'
+        grader_string_2 = 'tutor'
+
+        response = nil
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string, trial, grade_string, grader_string
+          )
+        }.to_not raise_error
+
+        expect(response['grade']).to eq grade_string
+        expect(response['grader']).to eq grader_string
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string, trial, grade_string_2, grader_string_2
+          )
+        }.to_not raise_error
+
+        expect(response['grade']).to eq grade_string_2
+        expect(response['grader']).to eq grader_string_2
+      end
+    end
+    context "invalid resource string" do
+      it "raises an exception" do
+        identifier = OpenStax::Exchange.create_identifiers.write
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string = 'https://example.com/api/exercises/123@1'
+        trial           = '1'
+        grade_string    = '1.0'
+        grader_string   = 'openstax'
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string, trial, grade_string, grader_string
+          )
         }.to raise_error(OpenStax::Exchange::ClientError)
       end
     end
