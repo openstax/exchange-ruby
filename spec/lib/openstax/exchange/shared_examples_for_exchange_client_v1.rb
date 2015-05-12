@@ -390,5 +390,23 @@ RSpec.shared_examples "exchange client api v1" do
         }.to raise_error(OpenStax::Exchange::ClientError)
       end
     end
+    context "invalid grade" do
+      it "raises an exception" do
+        identifier = OpenStax::Exchange.create_identifiers.write
+
+        # must have the form of a "trusted resource"
+        # (Exchange app/routines/find_or_create_resource_from_url.rb:35)
+        resource_string = 'https://exercises-dev1.openstax.org/api/exercises/123@1'
+        trial           = '1'
+        grade           = -0.01
+        grader_string   = 'openstax'
+
+        expect {
+          response = OpenStax::Exchange.record_grade(
+            identifier, resource_string, trial, grade, grader_string
+          )
+        }.to raise_error(OpenStax::Exchange::ClientError)
+      end
+    end
   end
 end
