@@ -71,6 +71,7 @@ module OpenStax
       def record_grade(identifier, resource, trial, grade, grader)
         host = URI(resource).host
         raise "invalid resource" unless host =~ /openstax\.org\z|localhost\z/
+        raise "invalid grade" if grade < 0 || grade > 1
 
         @grades[identifier] ||= {}
         @grades[identifier][resource] ||= {}
